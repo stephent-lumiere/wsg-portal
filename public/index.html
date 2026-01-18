@@ -1,0 +1,3007 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wall Street Guide - Student Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #0a1628;
+      --primary-light: #1a2a4a;
+      --white: #ffffff;
+      --gray-50: #fafafa;
+      --gray-100: #f5f5f5;
+      --gray-200: #e5e5e5;
+      --gray-300: #d4d4d4;
+      --gray-400: #a3a3a3;
+      --gray-500: #737373;
+      --gray-600: #525252;
+      --gray-900: #171717;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--gray-50);
+      color: var(--gray-900);
+      min-height: 100vh;
+    }
+
+    .container {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 280px;
+      background: var(--primary);
+      color: var(--white);
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .logo {
+      padding: 2rem 1.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .logo img {
+      height: 40px;
+      filter: brightness(0) invert(1);
+    }
+
+    .nav-menu {
+      list-style: none;
+      padding: 1.5rem 0;
+      flex: 1;
+    }
+
+    .nav-item {
+      padding: 1rem 1.5rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.875rem;
+      transition: all 0.2s ease;
+      color: rgba(255,255,255,0.6);
+      font-size: 0.9375rem;
+      font-weight: 500;
+      border-left: 3px solid transparent;
+    }
+
+    .nav-item:hover {
+      background: rgba(255,255,255,0.05);
+      color: rgba(255,255,255,0.9);
+    }
+
+    .nav-item.active {
+      background: rgba(255,255,255,0.08);
+      border-left-color: var(--white);
+      color: var(--white);
+    }
+
+    .nav-icon {
+      width: 20px;
+      height: 20px;
+    }
+
+    /* Main Content */
+    .main {
+      flex: 1;
+      padding: 3rem;
+      overflow-y: auto;
+      background: var(--white);
+    }
+
+    /* Student Header */
+    .student-header {
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--gray-200);
+    }
+
+    .student-header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .student-name {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--primary);
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+    }
+
+    .student-meta {
+      display: flex;
+      gap: 2rem;
+      margin-top: 0.75rem;
+    }
+
+    .student-meta-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--gray-500);
+      font-size: 0.9375rem;
+    }
+
+    .student-meta-item svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .avatar {
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      background: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      font-weight: 600;
+      font-size: 1.75rem;
+      letter-spacing: -0.02em;
+      overflow: hidden;
+      border: 3px solid var(--gray-200);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Cards */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .card {
+      background: var(--gray-50);
+      border-radius: 12px;
+      padding: 1.75rem;
+      border: 1px solid var(--gray-200);
+      transition: border-color 0.2s ease;
+    }
+
+    .card:hover {
+      border-color: var(--gray-300);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 0.5rem;
+    }
+
+    .card-title {
+      font-size: 0.75rem;
+      color: var(--gray-500);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 600;
+    }
+
+    .card-value {
+      font-size: 1.375rem;
+      font-weight: 600;
+      color: var(--gray-900);
+      margin-top: 0.75rem;
+    }
+
+    .card-subtitle {
+      font-size: 0.875rem;
+      color: var(--gray-500);
+      margin-top: 0.25rem;
+    }
+
+    .mentor-card {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .mentor-avatar {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      font-weight: 600;
+      font-size: 1.25rem;
+      overflow: hidden;
+      flex-shrink: 0;
+      border: 2px solid var(--gray-200);
+    }
+
+    .mentor-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .mentor-avatar.secondary {
+      background: var(--gray-900);
+    }
+
+    .mentor-card.clickable {
+      cursor: pointer;
+      padding: 0.75rem;
+      margin: -0.75rem;
+      margin-top: 0.25rem;
+      border-radius: 8px;
+      transition: background 0.2s ease;
+    }
+
+    .mentor-card.clickable:hover {
+      background: var(--gray-100);
+    }
+
+    .mentor-card.clickable:hover .mentor-info h4 {
+      color: var(--primary);
+    }
+
+    .mentor-info h4 {
+      font-size: 1.0625rem;
+      font-weight: 600;
+      color: var(--gray-900);
+    }
+
+    .mentor-info p {
+      font-size: 0.8125rem;
+      color: var(--gray-500);
+      margin-top: 0.125rem;
+    }
+
+    /* Goals Card - Full Width */
+    .card.full-width {
+      grid-column: span 2;
+    }
+
+    .card.full-width .card-value {
+      font-size: 1.0625rem;
+      font-weight: 400;
+      line-height: 1.7;
+      color: var(--gray-600);
+    }
+
+    /* Update Button */
+    .btn-primary {
+      background: var(--primary);
+      color: var(--white);
+      border: none;
+      padding: 0.875rem 1.75rem;
+      border-radius: 8px;
+      font-size: 0.9375rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-light);
+      transform: translateY(-1px);
+    }
+
+    /* Status Badge */
+    .status-badge {
+      display: inline-block;
+      padding: 0.375rem 0.875rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      background: var(--gray-900);
+      color: var(--white);
+      letter-spacing: 0.02em;
+    }
+
+    /* Modal */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(10, 22, 40, 0.6);
+      backdrop-filter: blur(4px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 2.5rem;
+      width: 100%;
+      max-width: 480px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+    }
+
+    .modal h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+      color: var(--primary);
+      letter-spacing: -0.02em;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--gray-900);
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 0.875rem 1rem;
+      border: 1px solid var(--gray-300);
+      border-radius: 8px;
+      font-size: 0.9375rem;
+      font-family: inherit;
+      transition: border-color 0.2s ease;
+      background: var(--white);
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: flex-end;
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--gray-200);
+    }
+
+    .btn-secondary {
+      background: var(--white);
+      color: var(--gray-600);
+      border: 1px solid var(--gray-300);
+      padding: 0.875rem 1.75rem;
+      border-radius: 8px;
+      font-size: 0.9375rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-secondary:hover {
+      background: var(--gray-50);
+      border-color: var(--gray-400);
+    }
+
+    /* Meetings Section */
+    .meetings-section {
+      margin-top: 2.5rem;
+      background: var(--gray-50);
+      border-radius: 12px;
+      border: 1px solid var(--gray-200);
+      overflow: hidden;
+    }
+
+    .meetings-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 1.75rem;
+      border-bottom: 1px solid var(--gray-200);
+      background: var(--white);
+    }
+
+    .meetings-header h3 {
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    .meetings-stats {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .stat {
+      text-align: right;
+    }
+
+    .stat-value {
+      display: block;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--gray-900);
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      color: var(--gray-500);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .meetings-table-container {
+      overflow-x: auto;
+    }
+
+    .meetings-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .meetings-table th {
+      text-align: left;
+      padding: 0.875rem 1.25rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--gray-500);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      background: var(--gray-100);
+      border-bottom: 1px solid var(--gray-200);
+    }
+
+    .meetings-table td {
+      padding: 1rem 1.25rem;
+      font-size: 0.9375rem;
+      color: var(--gray-900);
+      border-bottom: 1px solid var(--gray-200);
+      background: var(--white);
+    }
+
+    .meetings-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .meetings-table tr:hover td {
+      background: var(--gray-50);
+    }
+
+    .meeting-type {
+      display: inline-block;
+      padding: 0.25rem 0.625rem;
+      border-radius: 4px;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      background: var(--gray-100);
+      color: var(--gray-700);
+    }
+
+    .meeting-type.technical {
+      background: #dbeafe;
+      color: #1e40af;
+    }
+
+    .meeting-type.strategy {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .meeting-type.behavioral {
+      background: #fef3c7;
+      color: #92400e;
+    }
+
+    .meeting-notes {
+      max-width: 300px;
+      color: var(--gray-600);
+      font-size: 0.875rem;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .meeting-notes .notes-text {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      display: block;
+    }
+
+    .meeting-notes.expanded .notes-text {
+      white-space: normal;
+      overflow: visible;
+    }
+
+    .meeting-notes .expand-hint {
+      font-size: 0.75rem;
+      color: var(--gray-400);
+      margin-top: 0.25rem;
+    }
+
+    .meeting-notes:hover {
+      background: var(--gray-50);
+    }
+
+    .meeting-notes.clickable {
+      padding: 0.5rem;
+      margin: -0.5rem;
+      border-radius: 6px;
+    }
+
+    .meeting-notes.expanded {
+      background: var(--gray-50);
+      max-width: none;
+    }
+
+    .meeting-notes.expanded .notes-text {
+      line-height: 1.6;
+    }
+
+    .meeting-notes.expanded .expand-hint {
+      color: var(--primary);
+    }
+
+    .loading-row {
+      text-align: center;
+      color: var(--gray-500);
+      padding: 2rem !important;
+    }
+
+    .no-meetings {
+      text-align: center;
+      color: var(--gray-500);
+      padding: 2rem !important;
+    }
+
+    /* Mentor Profile Modal */
+    .mentor-modal {
+      background: var(--white);
+      border-radius: 16px;
+      width: 100%;
+      max-width: 600px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+    }
+
+    .mentor-modal-header {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      padding: 2rem;
+      border-bottom: 1px solid var(--gray-200);
+      position: sticky;
+      top: 0;
+      background: var(--white);
+      z-index: 1;
+    }
+
+    .mentor-modal-avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      font-weight: 600;
+      font-size: 1.75rem;
+      overflow: hidden;
+      flex-shrink: 0;
+      border: 3px solid var(--gray-200);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .mentor-modal-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .mentor-modal-title h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 0.25rem;
+    }
+
+    .mentor-modal-title p {
+      color: var(--gray-500);
+      font-size: 0.9375rem;
+    }
+
+    .mentor-modal-close {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem;
+      color: var(--gray-400);
+      transition: color 0.2s ease;
+    }
+
+    .mentor-modal-close:hover {
+      color: var(--gray-900);
+    }
+
+    .mentor-modal-body {
+      padding: 1.5rem 2rem 2rem;
+    }
+
+    .mentor-field {
+      display: flex;
+      padding: 0.875rem 0;
+      border-bottom: 1px solid var(--gray-100);
+    }
+
+    .mentor-field:last-child {
+      border-bottom: none;
+    }
+
+    .mentor-field-label {
+      width: 160px;
+      flex-shrink: 0;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--gray-500);
+    }
+
+    .mentor-field-value {
+      flex: 1;
+      font-size: 0.9375rem;
+      color: var(--gray-900);
+      line-height: 1.6;
+    }
+
+    .mentor-field-value a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    .mentor-field-value a:hover {
+      text-decoration: underline;
+    }
+
+    .mentor-type-badge {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      background: #dbeafe;
+      color: #1e40af;
+    }
+
+    .mentor-intro {
+      background: var(--gray-50);
+      padding: 1rem;
+      border-radius: 8px;
+      font-style: italic;
+      line-height: 1.7;
+    }
+
+    .mentor-company-card {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.25rem;
+      background: var(--gray-50);
+      border-radius: 12px;
+      margin-bottom: 1.5rem;
+      border: 1px solid var(--gray-200);
+    }
+
+    .mentor-company-logo {
+      width: 56px;
+      height: 56px;
+      border-radius: 8px;
+      background: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px;
+      border: 1px solid var(--gray-200);
+      flex-shrink: 0;
+    }
+
+    .mentor-company-logo img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+
+    .mentor-company-info h4 {
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: var(--gray-900);
+      margin-bottom: 0.25rem;
+    }
+
+    .mentor-company-info p {
+      color: var(--gray-500);
+      font-size: 0.875rem;
+    }
+
+    .mentor-company-info .offer-badge {
+      display: inline-block;
+      margin-top: 0.5rem;
+      padding: 0.25rem 0.625rem;
+      background: #dcfce7;
+      color: #166534;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 500;
+    }
+
+    /* Login Screen */
+    .login-screen {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--primary);
+      padding: 2rem;
+    }
+
+    .login-card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 3rem;
+      width: 100%;
+      max-width: 420px;
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.4);
+    }
+
+    .login-logo {
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .login-logo img {
+      height: 48px;
+    }
+
+    .login-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+
+    .login-subtitle {
+      color: var(--gray-500);
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 0.9375rem;
+    }
+
+    .login-form .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .login-form label {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--gray-700);
+      margin-bottom: 0.5rem;
+    }
+
+    .login-form input {
+      width: 100%;
+      padding: 0.875rem 1rem;
+      border: 1px solid var(--gray-300);
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: border-color 0.2s ease;
+    }
+
+    .login-form input:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+
+    .login-form .btn-primary {
+      width: 100%;
+      padding: 1rem;
+      font-size: 1rem;
+    }
+
+    .login-error {
+      background: #fef2f2;
+      color: #dc2626;
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      font-size: 0.875rem;
+      margin-bottom: 1rem;
+      display: none;
+    }
+
+    .login-error.show {
+      display: block;
+    }
+
+    /* Logout button in header */
+    .logout-btn {
+      background: none;
+      border: 1px solid var(--gray-300);
+      color: var(--gray-600);
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      font-size: 0.875rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .logout-btn:hover {
+      background: var(--gray-100);
+      border-color: var(--gray-400);
+    }
+
+    /* Hide elements based on auth state */
+    .app-container {
+      display: none;
+    }
+
+    .app-container.authenticated {
+      display: flex;
+    }
+
+    .login-screen.hidden {
+      display: none;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    /* Content Sections */
+    .content-section {
+      display: none;
+    }
+
+    .content-section.active {
+      display: block;
+    }
+
+    /* Section Header */
+    .section-header {
+      margin-bottom: 2rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--gray-200);
+    }
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--primary);
+      letter-spacing: -0.02em;
+      margin-bottom: 0.25rem;
+    }
+
+    .section-subtitle {
+      color: var(--gray-500);
+      font-size: 1rem;
+    }
+
+    /* Mentor Filters */
+    .mentor-filters {
+      margin-bottom: 1.5rem;
+    }
+
+    .search-box {
+      position: relative;
+      margin-bottom: 1rem;
+    }
+
+    .search-box .search-icon {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 20px;
+      height: 20px;
+      color: var(--gray-400);
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 0.875rem 1rem 0.875rem 3rem;
+      border: 1px solid var(--gray-300);
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: border-color 0.2s ease;
+    }
+
+    .search-box input:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+
+    .filter-row {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    /* Multi-Select Dropdown */
+    .multi-select {
+      flex: 1;
+      min-width: 180px;
+      position: relative;
+    }
+
+    .multi-select-trigger {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--gray-300);
+      border-radius: 8px;
+      font-size: 0.9375rem;
+      background: var(--white);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .multi-select-trigger:hover {
+      border-color: var(--gray-400);
+    }
+
+    .multi-select.active .multi-select-trigger {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 2px rgba(10, 22, 40, 0.1);
+    }
+
+    .multi-select.has-selection .multi-select-trigger {
+      background: var(--gray-100);
+      border-color: var(--gray-400);
+    }
+
+    .multi-select-label {
+      color: var(--gray-600);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .multi-select.has-selection .multi-select-label {
+      color: var(--gray-900);
+      font-weight: 500;
+    }
+
+    .multi-select-arrow {
+      width: 16px;
+      height: 16px;
+      color: var(--gray-400);
+      flex-shrink: 0;
+      transition: transform 0.2s ease;
+    }
+
+    .multi-select.active .multi-select-arrow {
+      transform: rotate(180deg);
+    }
+
+    .multi-select-dropdown {
+      position: absolute;
+      top: calc(100% + 4px);
+      left: 0;
+      right: 0;
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: 8px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      max-height: 280px;
+      overflow-y: auto;
+      z-index: 100;
+      display: none;
+    }
+
+    .multi-select.active .multi-select-dropdown {
+      display: block;
+    }
+
+    .multi-select-option {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.625rem 1rem;
+      cursor: pointer;
+      transition: background 0.15s ease;
+    }
+
+    .multi-select-option:hover {
+      background: var(--gray-50);
+    }
+
+    .multi-select-option.selected {
+      background: var(--gray-100);
+    }
+
+    .multi-select-checkbox {
+      width: 18px;
+      height: 18px;
+      border: 2px solid var(--gray-300);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: all 0.15s ease;
+    }
+
+    .multi-select-option.selected .multi-select-checkbox {
+      background: var(--primary);
+      border-color: var(--primary);
+    }
+
+    .multi-select-checkbox svg {
+      width: 12px;
+      height: 12px;
+      color: white;
+      opacity: 0;
+    }
+
+    .multi-select-option.selected .multi-select-checkbox svg {
+      opacity: 1;
+    }
+
+    .multi-select-option-label {
+      font-size: 0.875rem;
+      color: var(--gray-700);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    /* Active Filters Display */
+    .active-filters {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .active-filters-label {
+      font-size: 0.8125rem;
+      color: var(--gray-500);
+    }
+
+    .active-filter-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .active-filter-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.375rem;
+      padding: 0.25rem 0.5rem 0.25rem 0.75rem;
+      background: var(--gray-100);
+      border-radius: 9999px;
+      font-size: 0.8125rem;
+      color: var(--gray-700);
+    }
+
+    .active-filter-tag button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 18px;
+      height: 18px;
+      border: none;
+      background: var(--gray-300);
+      border-radius: 50%;
+      cursor: pointer;
+      color: var(--gray-600);
+      transition: all 0.15s ease;
+    }
+
+    .active-filter-tag button:hover {
+      background: var(--gray-400);
+      color: var(--white);
+    }
+
+    .clear-filters-btn {
+      border: none;
+      background: none;
+      color: var(--primary);
+      font-size: 0.8125rem;
+      font-weight: 500;
+      cursor: pointer;
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      transition: background 0.15s ease;
+    }
+
+    .clear-filters-btn:hover {
+      background: var(--gray-100);
+    }
+
+    /* Mentor Count */
+    .mentor-count {
+      color: var(--gray-500);
+      font-size: 0.875rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .mentor-count span {
+      font-weight: 600;
+      color: var(--gray-900);
+    }
+
+    /* Mentor Grid */
+    .mentor-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .loading-mentors {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 3rem;
+      color: var(--gray-500);
+    }
+
+    .no-mentors {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 3rem;
+      color: var(--gray-500);
+    }
+
+    /* Mentor Card */
+    .mentor-card-item {
+      background: var(--gray-50);
+      border: 1px solid var(--gray-200);
+      border-radius: 12px;
+      padding: 1.5rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .mentor-card-item:hover {
+      border-color: var(--gray-300);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      transform: translateY(-2px);
+    }
+
+    .mentor-card-header {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .mentor-card-avatar {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      font-weight: 600;
+      font-size: 1.25rem;
+      overflow: hidden;
+      flex-shrink: 0;
+      border: 2px solid var(--gray-200);
+    }
+
+    .mentor-card-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .mentor-card-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .mentor-card-name {
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: var(--gray-900);
+      margin-bottom: 0.25rem;
+    }
+
+    .mentor-card-company {
+      font-size: 0.875rem;
+      color: var(--gray-600);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .mentor-card-company .company-logo {
+      width: 18px;
+      height: 18px;
+      object-fit: contain;
+      flex-shrink: 0;
+    }
+
+    .mentor-card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .mentor-tag {
+      display: inline-block;
+      padding: 0.25rem 0.625rem;
+      background: var(--gray-100);
+      border-radius: 4px;
+      font-size: 0.75rem;
+      color: var(--gray-600);
+    }
+
+    .mentor-tag.industry {
+      background: #dbeafe;
+      color: #1e40af;
+    }
+
+    .mentor-tag.school {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    /* AI Chat Styles */
+    .ai-chat-container {
+      display: flex;
+      flex-direction: column;
+      height: calc(100vh - 6rem);
+      max-height: 800px;
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .ai-chat-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.25rem 1.5rem;
+      border-bottom: 1px solid var(--gray-200);
+      background: var(--gray-50);
+    }
+
+    .ai-avatar {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, var(--primary) 0%, #1e3a5f 100%);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+
+    .ai-avatar svg {
+      width: 28px;
+      height: 28px;
+    }
+
+    .ai-header-info h2 {
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 0.125rem;
+    }
+
+    .ai-header-info p {
+      font-size: 0.875rem;
+      color: var(--gray-500);
+    }
+
+    .ai-chat-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .ai-message {
+      display: flex;
+      gap: 0.875rem;
+      max-width: 85%;
+    }
+
+    .ai-message.user {
+      margin-left: auto;
+      flex-direction: row-reverse;
+    }
+
+    .ai-message-avatar {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, var(--primary) 0%, #1e3a5f 100%);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      flex-shrink: 0;
+    }
+
+    .ai-message-avatar svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .ai-message.user .ai-message-avatar {
+      background: var(--gray-200);
+      color: var(--gray-600);
+    }
+
+    .ai-message-content {
+      background: var(--gray-50);
+      padding: 1rem 1.25rem;
+      border-radius: 12px;
+      border-top-left-radius: 4px;
+      font-size: 0.9375rem;
+      line-height: 1.6;
+      color: var(--gray-700);
+    }
+
+    .ai-message.user .ai-message-content {
+      background: var(--primary);
+      color: white;
+      border-top-left-radius: 12px;
+      border-top-right-radius: 4px;
+    }
+
+    .ai-message-content p {
+      margin-bottom: 0.75rem;
+    }
+
+    .ai-message-content p:last-child {
+      margin-bottom: 0;
+    }
+
+    .ai-message-content ul {
+      margin: 0.5rem 0;
+      padding-left: 1.25rem;
+    }
+
+    .ai-message-content li {
+      margin-bottom: 0.375rem;
+    }
+
+    .ai-message-content strong {
+      font-weight: 600;
+    }
+
+    .ai-message-content code {
+      background: rgba(0,0,0,0.05);
+      padding: 0.125rem 0.375rem;
+      border-radius: 4px;
+      font-family: 'SF Mono', Monaco, monospace;
+      font-size: 0.875rem;
+    }
+
+    .ai-message.user .ai-message-content code {
+      background: rgba(255,255,255,0.15);
+    }
+
+    .ai-chat-input-container {
+      padding: 1rem 1.5rem 1.5rem;
+      border-top: 1px solid var(--gray-200);
+      background: var(--white);
+    }
+
+    .ai-suggested-prompts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .suggested-prompt {
+      padding: 0.5rem 0.875rem;
+      background: var(--gray-100);
+      border: 1px solid var(--gray-200);
+      border-radius: 9999px;
+      font-size: 0.8125rem;
+      color: var(--gray-600);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .suggested-prompt:hover {
+      background: var(--gray-200);
+      color: var(--gray-900);
+    }
+
+    .ai-chat-form {
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-end;
+    }
+
+    .ai-chat-form textarea {
+      flex: 1;
+      padding: 0.875rem 1rem;
+      border: 1px solid var(--gray-300);
+      border-radius: 12px;
+      font-size: 0.9375rem;
+      font-family: inherit;
+      resize: none;
+      max-height: 120px;
+      line-height: 1.5;
+      transition: border-color 0.2s ease;
+    }
+
+    .ai-chat-form textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+
+    .ai-chat-form button {
+      width: 44px;
+      height: 44px;
+      background: var(--primary);
+      border: none;
+      border-radius: 12px;
+      color: white;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s ease;
+      flex-shrink: 0;
+    }
+
+    .ai-chat-form button:hover {
+      background: var(--primary-light);
+      transform: scale(1.05);
+    }
+
+    .ai-chat-form button:disabled {
+      background: var(--gray-300);
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .ai-chat-form button svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .ai-typing-indicator {
+      display: flex;
+      gap: 4px;
+      padding: 0.5rem;
+    }
+
+    .ai-typing-indicator span {
+      width: 8px;
+      height: 8px;
+      background: var(--gray-400);
+      border-radius: 50%;
+      animation: typing 1.4s infinite ease-in-out;
+    }
+
+    .ai-typing-indicator span:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .ai-typing-indicator span:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+
+    @keyframes typing {
+      0%, 60%, 100% { transform: translateY(0); }
+      30% { transform: translateY(-4px); }
+    }
+  </style>
+</head>
+<body>
+  <!-- Login Screen -->
+  <div class="login-screen" id="loginScreen">
+    <div class="login-card">
+      <div class="login-logo">
+        <img src="logo.png" alt="Wall Street Guide">
+      </div>
+      <h1 class="login-title">Student Portal</h1>
+      <p class="login-subtitle">Sign in with your registered email</p>
+
+      <div class="login-error" id="loginError">
+        Invalid email. Please use the email you registered with.
+      </div>
+
+      <!-- Email Form -->
+      <form class="login-form" id="loginForm">
+        <div class="form-group">
+          <label for="loginEmail">Email Address</label>
+          <input type="email" id="loginEmail" placeholder="your.email@example.com" required>
+        </div>
+        <button type="submit" class="btn-primary" id="loginBtn">Send Magic Link</button>
+      </form>
+
+      <!-- Magic Link Sent State -->
+      <div id="magicLinkSent" style="display: none; text-align: center;">
+        <div style="width: 64px; height: 64px; background: #dcfce7; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
+          <svg width="32" height="32" fill="none" stroke="#166534" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+          </svg>
+        </div>
+        <h2 style="font-size: 1.25rem; font-weight: 600; color: var(--primary); margin-bottom: 0.5rem;">Check your email</h2>
+        <p style="color: var(--gray-500); margin-bottom: 1rem;">
+          We sent a sign-in link to<br>
+          <strong id="sentToEmail" style="color: var(--gray-900);"></strong>
+        </p>
+        <p style="color: var(--gray-400); font-size: 0.875rem;">
+          The link expires in 15 minutes
+        </p>
+
+        <!-- Dev Mode: Direct Link -->
+        <div id="devModeSection" style="display: none; margin-top: 1.5rem; padding: 1rem; background: #fef3c7; border-radius: 8px;">
+          <p style="color: #92400e; font-size: 0.8125rem; font-weight: 500; margin-bottom: 0.5rem;">Development Mode</p>
+          <a id="devModeLink" href="#" class="btn-primary" style="display: inline-block; text-decoration: none;">
+            Click to Sign In
+          </a>
+        </div>
+
+        <button type="button" class="btn-secondary" onclick="showLogin()" style="margin-top: 1.5rem;">
+          Use a different email
+        </button>
+      </div>
+
+      <!-- Verifying Token State -->
+      <div id="verifyingToken" style="display: none; text-align: center;">
+        <div style="width: 64px; height: 64px; background: var(--gray-100); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; animation: pulse 1.5s infinite;">
+          <svg width="32" height="32" fill="none" stroke="var(--gray-500)" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+          </svg>
+        </div>
+        <h2 style="font-size: 1.25rem; font-weight: 600; color: var(--primary);">Signing you in...</h2>
+        <p style="color: var(--gray-500);">Please wait</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main App Container -->
+  <div class="container app-container" id="appContainer">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="logo">
+        <img src="logo.png" alt="Wall Street Guide">
+      </div>
+      <ul class="nav-menu">
+        <li class="nav-item active" data-section="profile">
+          <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+          </svg>
+          Profile
+        </li>
+        <li class="nav-item" data-section="find-mentor">
+          <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+          </svg>
+          Find a Mentor
+        </li>
+        <li class="nav-item" data-section="ai-expert">
+          <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+          </svg>
+          WSG AI Expert
+        </li>
+        <li class="nav-item" data-section="progress">
+          <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+          </svg>
+          Progress
+        </li>
+        <li class="nav-item" data-section="resources">
+          <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+          </svg>
+          Resources
+        </li>
+      </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main">
+      <!-- Profile Section -->
+      <section id="section-profile" class="content-section active">
+      <div class="student-header">
+        <div class="student-header-top">
+          <div>
+            <h1 class="student-name" id="studentFullName">Loading...</h1>
+            <div class="student-meta">
+              <span class="student-meta-item">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                </svg>
+                <span id="studentUniversity">--</span>
+              </span>
+              <span class="student-meta-item">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                </svg>
+                Class of <span id="studentGradYear">--</span>
+              </span>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; gap: 1rem;">
+            <div class="avatar" id="avatarInitials">--</div>
+            <button class="logout-btn" onclick="logout()">Sign Out</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="cards-grid">
+        <!-- Current Module Card -->
+        <div class="card">
+          <div class="card-header">
+            <p class="card-title">Current Module</p>
+            <span class="status-badge">In Progress</span>
+          </div>
+          <p class="card-value" id="currentModule">Loading...</p>
+          <p class="card-subtitle" id="moduleStatus">--</p>
+        </div>
+
+        <!-- Lead Mentor Card -->
+        <div class="card">
+          <p class="card-title">Lead Mentor</p>
+          <div class="mentor-card" id="leadMentorCard">
+            <div class="mentor-avatar" id="mentorAvatar">--</div>
+            <div class="mentor-info">
+              <h4 id="mentorName">Loading...</h4>
+              <p>Lead Mentor</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recruitment Manager Card -->
+        <div class="card">
+          <p class="card-title">Recruitment Manager</p>
+          <div class="mentor-card" id="rmCard">
+            <div class="mentor-avatar secondary" id="rmAvatar">--</div>
+            <div class="mentor-info">
+              <h4 id="rmName">Loading...</h4>
+              <p>Recruitment Manager</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Industry Focus Card -->
+        <div class="card">
+          <p class="card-title">Industry Focus</p>
+          <p class="card-value" id="industryFocus">--</p>
+          <p class="card-subtitle" id="dreamCompany">--</p>
+        </div>
+
+        <!-- Goals Card -->
+        <div class="card full-width">
+          <p class="card-title">Career Goals</p>
+          <p class="card-value" id="careerGoals">Loading...</p>
+        </div>
+      </div>
+
+      <!-- Meetings Section -->
+      <div class="meetings-section">
+        <div class="meetings-header">
+          <h3>Meetings with WSG Mentors</h3>
+          <div class="meetings-stats">
+            <div class="stat">
+              <span class="stat-value" id="totalMeetings">0</span>
+              <span class="stat-label">Total Sessions</span>
+            </div>
+            <div class="stat">
+              <span class="stat-value" id="lastMeetingDate">--</span>
+              <span class="stat-label">Last Meeting</span>
+            </div>
+          </div>
+        </div>
+        <div class="meetings-table-container">
+          <table class="meetings-table">
+            <thead>
+              <tr>
+                <th>Mentor</th>
+                <th>Date</th>
+                <th>Type</th>
+                <th>Duration</th>
+                <th>Notes</th>
+              </tr>
+            </thead>
+            <tbody id="meetingsTableBody">
+              <tr>
+                <td colspan="5" class="loading-row">Loading meetings...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <button class="btn-primary" onclick="openModal()" style="margin-top: 2rem;">Update Background</button>
+      </section>
+
+      <!-- Find a Mentor Section -->
+      <section id="section-find-mentor" class="content-section">
+        <div class="section-header">
+          <div>
+            <h1 class="section-title">Find a Mentor</h1>
+            <p class="section-subtitle">Connect with WSG mentors based on your interests</p>
+          </div>
+        </div>
+
+        <!-- Search and Filters -->
+        <div class="mentor-filters">
+          <div class="search-box">
+            <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+            </svg>
+            <input type="text" id="mentorSearch" placeholder="Search by name, company, or school...">
+          </div>
+          <div class="filter-row">
+            <!-- Industry Multi-Select -->
+            <div class="multi-select" id="industryFilter">
+              <div class="multi-select-trigger" onclick="toggleMultiSelect('industryFilter')">
+                <span class="multi-select-label">All Industries</span>
+                <svg class="multi-select-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                </svg>
+              </div>
+              <div class="multi-select-dropdown" id="industryDropdown"></div>
+            </div>
+
+            <!-- School Multi-Select -->
+            <div class="multi-select" id="schoolFilter">
+              <div class="multi-select-trigger" onclick="toggleMultiSelect('schoolFilter')">
+                <span class="multi-select-label">All Schools</span>
+                <svg class="multi-select-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                </svg>
+              </div>
+              <div class="multi-select-dropdown" id="schoolDropdown"></div>
+            </div>
+
+            <!-- Company Multi-Select -->
+            <div class="multi-select" id="companyFilter">
+              <div class="multi-select-trigger" onclick="toggleMultiSelect('companyFilter')">
+                <span class="multi-select-label">All Companies</span>
+                <svg class="multi-select-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                </svg>
+              </div>
+              <div class="multi-select-dropdown" id="companyDropdown"></div>
+            </div>
+          </div>
+
+          <!-- Active Filters Display -->
+          <div class="active-filters" id="activeFilters" style="display: none;">
+            <span class="active-filters-label">Active filters:</span>
+            <div class="active-filter-tags" id="activeFilterTags"></div>
+            <button class="clear-filters-btn" onclick="clearAllFilters()">Clear all</button>
+          </div>
+        </div>
+
+        <!-- Mentor Count -->
+        <div class="mentor-count">
+          <span id="mentorResultCount">0</span> mentors found
+        </div>
+
+        <!-- Mentor Grid -->
+        <div class="mentor-grid" id="mentorGrid">
+          <div class="loading-mentors">Loading mentors...</div>
+        </div>
+      </section>
+
+      <!-- AI Expert Section -->
+      <section id="section-ai-expert" class="content-section">
+        <div class="ai-chat-container">
+          <div class="ai-chat-header">
+            <div class="ai-avatar">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+              </svg>
+            </div>
+            <div class="ai-header-info">
+              <h2>WSG AI Recruitment Expert</h2>
+              <p>Your personal guide for finance & consulting recruitment</p>
+            </div>
+          </div>
+
+          <div class="ai-chat-messages" id="chatMessages">
+            <div class="ai-message">
+              <div class="ai-message-avatar">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                </svg>
+              </div>
+              <div class="ai-message-content">
+                <p>Hi! I'm the <strong>WSG AI Recruitment Expert</strong>. This AI is trained on thousands of successful profiles of students and WSG's internal recruitment methodology. It's no replacement for a great mentor - but it can help you solve a number of questions!</p>
+                <p>I can help you with:</p>
+                <ul>
+                  <li>Behavioral interview preparation (STAR method, common questions)</li>
+                  <li>Technical interview prep (accounting, valuation, LBO, DCF)</li>
+                  <li>Case interview practice and frameworks</li>
+                  <li>Resume and cover letter feedback</li>
+                  <li>Networking strategies and coffee chat tips</li>
+                  <li>Industry-specific recruiting timelines and advice</li>
+                </ul>
+                <p>What would you like to work on today?</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="ai-chat-input-container">
+            <div class="ai-suggested-prompts" id="suggestedPrompts">
+              <button class="suggested-prompt" onclick="sendSuggestedPrompt('Help me prepare for a behavioral interview')">Behavioral prep</button>
+              <button class="suggested-prompt" onclick="sendSuggestedPrompt('Walk me through a DCF valuation')">DCF walkthrough</button>
+              <button class="suggested-prompt" onclick="sendSuggestedPrompt('Give me a market sizing case to practice')">Practice case</button>
+              <button class="suggested-prompt" onclick="sendSuggestedPrompt('What should I know about recruiting timelines?')">Recruiting timeline</button>
+            </div>
+            <form class="ai-chat-form" id="chatForm" onsubmit="sendMessage(event)">
+              <textarea
+                id="chatInput"
+                placeholder="Ask me anything about recruiting..."
+                rows="1"
+                onkeydown="handleChatKeydown(event)"
+              ></textarea>
+              <button type="submit" id="sendButton">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+                </svg>
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Mentor Profile Modal -->
+  <div class="modal-overlay" id="mentorModalOverlay">
+    <div class="mentor-modal">
+      <div class="mentor-modal-header">
+        <div class="mentor-modal-avatar" id="mentorModalAvatar">--</div>
+        <div class="mentor-modal-title">
+          <h3 id="mentorModalName">Mentor Name</h3>
+          <p id="mentorModalSubtitle">Job Title at Company</p>
+        </div>
+        <button class="mentor-modal-close" onclick="closeMentorModal()">
+          <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+      <div class="mentor-modal-body" id="mentorModalBody">
+        <!-- Content populated by JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Update Background Modal -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+      <h3>Update Your Background</h3>
+      <form id="backgroundForm">
+        <div class="form-group">
+          <label for="university">University / Institution</label>
+          <input type="text" id="university" name="university" placeholder="Enter your university">
+        </div>
+        <div class="form-group">
+          <label for="major">Degree / Major</label>
+          <input type="text" id="major" name="major" placeholder="Enter your major">
+        </div>
+        <div class="form-group">
+          <label for="gradYear">Graduation Year</label>
+          <select id="gradYear" name="gradYear">
+            <option value="">Select year</option>
+            <option value="2025">2025</option>
+            <option value="2026">2026</option>
+            <option value="2027">2027</option>
+            <option value="2028">2028</option>
+            <option value="2029">2029</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="goals">Short-Term Goals</label>
+          <textarea id="goals" name="goals" placeholder="What do you want to achieve in the next 1-3 years?"></textarea>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn-secondary" onclick="closeModal()">Cancel</button>
+          <button type="submit" class="btn-primary">Save Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const API_URL = window.location.origin;
+
+    // Store mentor data globally for modal access
+    let currentStudentData = null;
+
+    // Session management with expiration
+    function getSession() {
+      const sessionStr = localStorage.getItem('wsg_session');
+      if (!sessionStr) return null;
+
+      try {
+        const session = JSON.parse(sessionStr);
+        // Check if session has expired
+        if (Date.now() > session.expiresAt) {
+          clearSession();
+          return null;
+        }
+        return session;
+      } catch {
+        clearSession();
+        return null;
+      }
+    }
+
+    function setSession(email, token, expiresAt) {
+      localStorage.setItem('wsg_session', JSON.stringify({
+        email,
+        token,
+        expiresAt
+      }));
+    }
+
+    function clearSession() {
+      localStorage.removeItem('wsg_session');
+    }
+
+    function getLoggedInEmail() {
+      const session = getSession();
+      return session?.email || null;
+    }
+
+    function showLogin() {
+      document.getElementById('loginScreen').classList.remove('hidden');
+      document.getElementById('appContainer').classList.remove('authenticated');
+      // Reset login form state
+      document.getElementById('loginForm').style.display = 'block';
+      document.getElementById('magicLinkSent').style.display = 'none';
+      document.getElementById('verifyingToken').style.display = 'none';
+      document.getElementById('loginError').classList.remove('show');
+    }
+
+    function showApp() {
+      document.getElementById('loginScreen').classList.add('hidden');
+      document.getElementById('appContainer').classList.add('authenticated');
+    }
+
+    function logout() {
+      clearSession();
+      currentStudentData = null;
+      showLogin();
+    }
+
+    // Magic link form handler
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('loginEmail').value.trim();
+      const errorEl = document.getElementById('loginError');
+      const btnEl = document.getElementById('loginBtn');
+
+      errorEl.classList.remove('show');
+      btnEl.textContent = 'Sending link...';
+      btnEl.disabled = true;
+
+      try {
+        const response = await fetch(`${API_URL}/api/auth/magic-link`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.error || 'Failed to send magic link');
+        }
+
+        // Show success message
+        document.getElementById('loginForm').style.display = 'none';
+        document.getElementById('magicLinkSent').style.display = 'block';
+        document.getElementById('sentToEmail').textContent = email;
+
+        // Dev mode: show the magic link directly
+        if (data.devMode && data.magicLink) {
+          document.getElementById('devModeLink').href = data.magicLink;
+          document.getElementById('devModeSection').style.display = 'block';
+        } else {
+          document.getElementById('devModeSection').style.display = 'none';
+        }
+
+      } catch (err) {
+        errorEl.textContent = err.message || 'Failed to send magic link. Please try again.';
+        errorEl.classList.add('show');
+      } finally {
+        btnEl.textContent = 'Send Magic Link';
+        btnEl.disabled = false;
+      }
+    });
+
+    // Verify magic link token from URL
+    async function verifyMagicLinkToken(token) {
+      try {
+        document.getElementById('loginForm').style.display = 'none';
+        document.getElementById('magicLinkSent').style.display = 'none';
+        document.getElementById('verifyingToken').style.display = 'block';
+
+        const response = await fetch(`${API_URL}/api/auth/verify`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ token })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.error || 'Invalid link');
+        }
+
+        // Save session with 6-month expiration
+        setSession(data.student.email, data.session.token, data.session.expiresAt);
+
+        // Clear token from URL
+        window.history.replaceState({}, document.title, window.location.pathname);
+
+        // Show app
+        showApp();
+        loadStudentData();
+
+      } catch (err) {
+        document.getElementById('verifyingToken').style.display = 'none';
+        document.getElementById('loginForm').style.display = 'block';
+        document.getElementById('loginError').textContent = err.message;
+        document.getElementById('loginError').classList.add('show');
+
+        // Clear token from URL
+        window.history.replaceState({}, document.title, window.location.pathname);
+      }
+    }
+
+    // Check for existing session or magic link token on page load
+    function initApp() {
+      // Check for magic link token in URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const token = urlParams.get('token');
+
+      if (token) {
+        verifyMagicLinkToken(token);
+        return;
+      }
+
+      // Check for existing session
+      const email = getLoggedInEmail();
+      if (email) {
+        showApp();
+        loadStudentData();
+      } else {
+        showLogin();
+      }
+    }
+
+    async function loadStudentData() {
+      const studentEmail = getLoggedInEmail();
+      if (!studentEmail) {
+        showLogin();
+        return;
+      }
+
+      try {
+        const response = await fetch(`${API_URL}/student/${studentEmail}`);
+        if (!response.ok) throw new Error('Student not found');
+
+        const student = await response.json();
+        currentStudentData = student;
+
+        // Student Name - Use the Name field or construct from available data
+        const fullName = student['Name'] || student['Student ID'] || 'Student';
+        document.getElementById('studentFullName').textContent = fullName;
+
+        // Avatar - use headshot if available, otherwise initials
+        const avatarEl = document.getElementById('avatarInitials');
+        const headshot = student['Headshot'];
+        if (headshot && headshot.length > 0 && headshot[0].thumbnails?.large?.url) {
+          avatarEl.innerHTML = `<img src="${headshot[0].thumbnails.large.url}" alt="${fullName}">`;
+        } else {
+          const nameParts = fullName.trim().split(' ');
+          const initials = nameParts.map(n => n[0]).join('').toUpperCase();
+          avatarEl.textContent = initials;
+        }
+
+        // University and Grad Year
+        document.getElementById('studentUniversity').textContent = student['Current University / Institution'] || '--';
+        document.getElementById('studentGradYear').textContent = student['Graduation Year'] || '--';
+
+        // Current Module
+        document.getElementById('currentModule').textContent = student['Current Module'] || 'Getting Started';
+        document.getElementById('moduleStatus').textContent = student['Degree / Major'] || '--';
+
+        // Industry Focus
+        document.getElementById('industryFocus').textContent = student['Primary Industry of Interest'] || '--';
+        document.getElementById('dreamCompany').textContent = student['Dream Company or Organization'] || '--';
+
+        // Lead Mentor
+        const leadMentorCard = document.getElementById('leadMentorCard');
+        if (student.leadMentor) {
+          const mentor = student.leadMentor;
+          const mentorName = mentor.Name || 'Not Assigned';
+          document.getElementById('mentorName').textContent = mentorName;
+
+          // Mentor avatar with photo
+          const mentorAvatarEl = document.getElementById('mentorAvatar');
+          if (mentor.Headshot && mentor.Headshot.length > 0 && mentor.Headshot[0].thumbnails?.large?.url) {
+            mentorAvatarEl.innerHTML = `<img src="${mentor.Headshot[0].thumbnails.large.url}" alt="${mentorName}">`;
+          } else {
+            mentorAvatarEl.textContent = mentorName.split(' ').map(n => n[0]).join('');
+          }
+
+          // Ensure clickable
+          leadMentorCard.classList.add('clickable');
+          leadMentorCard.onclick = () => openMentorModal('leadMentor');
+        } else {
+          document.getElementById('mentorName').textContent = 'Not Assigned';
+          document.getElementById('mentorAvatar').textContent = '--';
+          leadMentorCard.classList.remove('clickable');
+          leadMentorCard.onclick = null;
+        }
+
+        // Recruitment Manager
+        const rmCard = document.getElementById('rmCard');
+        if (student.recruitmentManager) {
+          const rm = student.recruitmentManager;
+          const rmName = rm.Name || 'Not Assigned';
+          document.getElementById('rmName').textContent = rmName;
+
+          // RM avatar with photo
+          const rmAvatarEl = document.getElementById('rmAvatar');
+          if (rm.Headshot && rm.Headshot.length > 0 && rm.Headshot[0].thumbnails?.large?.url) {
+            rmAvatarEl.innerHTML = `<img src="${rm.Headshot[0].thumbnails.large.url}" alt="${rmName}">`;
+          } else {
+            rmAvatarEl.textContent = rmName.split(' ').map(n => n[0]).join('');
+          }
+
+          // Ensure clickable
+          rmCard.classList.add('clickable');
+          rmCard.onclick = () => openMentorModal('recruitmentManager');
+        } else {
+          document.getElementById('rmName').textContent = 'Not Assigned';
+          document.getElementById('rmAvatar').textContent = '--';
+          rmCard.classList.remove('clickable');
+          rmCard.onclick = null;
+        }
+
+        // Career Goals
+        document.getElementById('careerGoals').textContent = student['Short-Term Goals (1-3 Years)'] || 'No goals set';
+
+        // Render Meetings
+        renderMeetings(student.meetings || []);
+
+        // Pre-fill form
+        document.getElementById('university').value = student['Current University / Institution'] || '';
+        document.getElementById('major').value = student['Degree / Major'] || '';
+        document.getElementById('gradYear').value = student['Graduation Year'] || '';
+        document.getElementById('goals').value = student['Short-Term Goals (1-3 Years)'] || '';
+
+      } catch (error) {
+        console.error('Error loading student data:', error);
+        document.getElementById('studentFullName').textContent = 'Error Loading Profile';
+      }
+    }
+
+    function openModal() {
+      document.getElementById('modalOverlay').classList.add('active');
+    }
+
+    function closeModal() {
+      document.getElementById('modalOverlay').classList.remove('active');
+    }
+
+    document.getElementById('modalOverlay').addEventListener('click', (e) => {
+      if (e.target === e.currentTarget) closeModal();
+    });
+
+    document.getElementById('backgroundForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert('Background update functionality coming soon!');
+      closeModal();
+    });
+
+    document.querySelectorAll('.nav-item').forEach(item => {
+      item.addEventListener('click', () => {
+        document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+        item.classList.add('active');
+
+        // Switch sections
+        const section = item.dataset.section;
+        document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+        const targetSection = document.getElementById(`section-${section}`);
+        if (targetSection) {
+          targetSection.classList.add('active');
+        }
+
+        // Load mentors when Find a Mentor is clicked
+        if (section === 'find-mentor' && !allMentors.length) {
+          loadMentors();
+        }
+      });
+    });
+
+    // Mentor Directory State
+    let allMentors = [];
+    let filteredMentors = [];
+
+    // Multi-select filter state
+    const selectedFilters = {
+      industry: [],
+      school: [],
+      company: []
+    };
+
+    // Load all active mentors
+    async function loadMentors() {
+      try {
+        const response = await fetch(`${API_URL}/api/mentors`);
+        if (!response.ok) throw new Error('Failed to fetch mentors');
+
+        const data = await response.json();
+        allMentors = data.mentors;
+        filteredMentors = [...allMentors];
+
+        // Populate filter dropdowns
+        populateFilters();
+
+        // Render mentors
+        renderMentors();
+      } catch (err) {
+        console.error('Error loading mentors:', err);
+        document.getElementById('mentorGrid').innerHTML = '<div class="no-mentors">Failed to load mentors. Please try again.</div>';
+      }
+    }
+
+    // Populate multi-select dropdowns with unique values
+    function populateFilters() {
+      const industries = [...new Set(allMentors.map(m => m.industry?.trim()).filter(Boolean))].sort();
+      const schools = [...new Set(allMentors.map(m => m.education).filter(Boolean))].sort();
+      const companies = [...new Set(allMentors.map(m => m.company).filter(Boolean))].sort();
+
+      populateMultiSelect('industryDropdown', industries, 'industry');
+      populateMultiSelect('schoolDropdown', schools, 'school');
+      populateMultiSelect('companyDropdown', companies, 'company');
+    }
+
+    // Populate a single multi-select dropdown
+    function populateMultiSelect(dropdownId, options, filterType) {
+      const dropdown = document.getElementById(dropdownId);
+      dropdown.innerHTML = options.map(option => `
+        <div class="multi-select-option" onclick="toggleFilterOption('${filterType}', '${option.replace(/'/g, "\\'")}')">
+          <div class="multi-select-checkbox">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
+            </svg>
+          </div>
+          <span class="multi-select-option-label">${option}</span>
+        </div>
+      `).join('');
+    }
+
+    // Toggle multi-select dropdown open/closed
+    function toggleMultiSelect(filterId) {
+      const filter = document.getElementById(filterId);
+      const wasActive = filter.classList.contains('active');
+
+      // Close all other dropdowns
+      document.querySelectorAll('.multi-select').forEach(el => el.classList.remove('active'));
+
+      // Toggle this one
+      if (!wasActive) {
+        filter.classList.add('active');
+      }
+    }
+
+    // Close dropdowns when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.multi-select')) {
+        document.querySelectorAll('.multi-select').forEach(el => el.classList.remove('active'));
+      }
+    });
+
+    // Toggle a filter option selection
+    function toggleFilterOption(filterType, value) {
+      const index = selectedFilters[filterType].indexOf(value);
+      if (index === -1) {
+        selectedFilters[filterType].push(value);
+      } else {
+        selectedFilters[filterType].splice(index, 1);
+      }
+
+      updateFilterUI(filterType);
+      updateActiveFiltersDisplay();
+      filterMentors();
+    }
+
+    // Remove a specific filter
+    function removeFilter(filterType, value) {
+      const index = selectedFilters[filterType].indexOf(value);
+      if (index !== -1) {
+        selectedFilters[filterType].splice(index, 1);
+        updateFilterUI(filterType);
+        updateActiveFiltersDisplay();
+        filterMentors();
+      }
+    }
+
+    // Clear all filters
+    function clearAllFilters() {
+      selectedFilters.industry = [];
+      selectedFilters.school = [];
+      selectedFilters.company = [];
+
+      updateFilterUI('industry');
+      updateFilterUI('school');
+      updateFilterUI('company');
+      updateActiveFiltersDisplay();
+      filterMentors();
+    }
+
+    // Update the UI for a filter type
+    function updateFilterUI(filterType) {
+      const filterMap = {
+        industry: { containerId: 'industryFilter', dropdownId: 'industryDropdown', defaultLabel: 'All Industries' },
+        school: { containerId: 'schoolFilter', dropdownId: 'schoolDropdown', defaultLabel: 'All Schools' },
+        company: { containerId: 'companyFilter', dropdownId: 'companyDropdown', defaultLabel: 'All Companies' }
+      };
+
+      const config = filterMap[filterType];
+      const container = document.getElementById(config.containerId);
+      const dropdown = document.getElementById(config.dropdownId);
+      const selected = selectedFilters[filterType];
+
+      // Update trigger label
+      const label = container.querySelector('.multi-select-label');
+      if (selected.length === 0) {
+        label.textContent = config.defaultLabel;
+        container.classList.remove('has-selection');
+      } else if (selected.length === 1) {
+        label.textContent = selected[0];
+        container.classList.add('has-selection');
+      } else {
+        label.textContent = `${selected.length} selected`;
+        container.classList.add('has-selection');
+      }
+
+      // Update option checkboxes
+      dropdown.querySelectorAll('.multi-select-option').forEach(option => {
+        const optionLabel = option.querySelector('.multi-select-option-label').textContent;
+        if (selected.includes(optionLabel)) {
+          option.classList.add('selected');
+        } else {
+          option.classList.remove('selected');
+        }
+      });
+    }
+
+    // Update the active filters display
+    function updateActiveFiltersDisplay() {
+      const container = document.getElementById('activeFilters');
+      const tagsContainer = document.getElementById('activeFilterTags');
+
+      const allSelected = [
+        ...selectedFilters.industry.map(v => ({ type: 'industry', value: v })),
+        ...selectedFilters.school.map(v => ({ type: 'school', value: v })),
+        ...selectedFilters.company.map(v => ({ type: 'company', value: v }))
+      ];
+
+      if (allSelected.length === 0) {
+        container.style.display = 'none';
+        return;
+      }
+
+      container.style.display = 'flex';
+      tagsContainer.innerHTML = allSelected.map(({ type, value }) => `
+        <span class="active-filter-tag">
+          ${value}
+          <button onclick="removeFilter('${type}', '${value.replace(/'/g, "\\'")}')">
+            <svg width="10" height="10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+          </button>
+        </span>
+      `).join('');
+    }
+
+    // Filter mentors based on search and multi-select filters
+    function filterMentors() {
+      const searchTerm = document.getElementById('mentorSearch').value.toLowerCase();
+
+      filteredMentors = allMentors.filter(mentor => {
+        // Search filter
+        const matchesSearch = !searchTerm ||
+          mentor.name?.toLowerCase().includes(searchTerm) ||
+          mentor.company?.toLowerCase().includes(searchTerm) ||
+          mentor.education?.toLowerCase().includes(searchTerm) ||
+          mentor.industry?.toLowerCase().includes(searchTerm);
+
+        // Multi-select filters (match ANY selected option, or all if none selected)
+        const matchesIndustry = selectedFilters.industry.length === 0 ||
+          selectedFilters.industry.includes(mentor.industry?.trim());
+        const matchesSchool = selectedFilters.school.length === 0 ||
+          selectedFilters.school.includes(mentor.education);
+        const matchesCompany = selectedFilters.company.length === 0 ||
+          selectedFilters.company.includes(mentor.company);
+
+        return matchesSearch && matchesIndustry && matchesSchool && matchesCompany;
+      });
+
+      renderMentors();
+    }
+
+    // Format name as "First Name Last Initial"
+    function formatMentorName(fullName) {
+      if (!fullName) return 'Unknown';
+      const parts = fullName.trim().split(' ');
+      if (parts.length === 1) return parts[0];
+      const firstName = parts[0];
+      const lastInitial = parts[parts.length - 1][0];
+      return `${firstName} ${lastInitial}.`;
+    }
+
+    // Render mentor cards
+    function renderMentors() {
+      const grid = document.getElementById('mentorGrid');
+      const countEl = document.getElementById('mentorResultCount');
+
+      countEl.textContent = filteredMentors.length;
+
+      if (filteredMentors.length === 0) {
+        grid.innerHTML = '<div class="no-mentors">No mentors found matching your criteria</div>';
+        return;
+      }
+
+      grid.innerHTML = filteredMentors.map(mentor => {
+        const displayName = formatMentorName(mentor.name);
+        const initials = mentor.name?.split(' ').map(n => n[0]).join('') || '?';
+        const avatarHtml = mentor.headshot?.[0]?.thumbnails?.large?.url
+          ? `<img src="${mentor.headshot[0].thumbnails.large.url}" alt="${displayName}">`
+          : initials;
+
+        // Company logo
+        const logoUrl = getCompanyLogoUrl(mentor.company);
+        const logoHtml = logoUrl
+          ? `<img src="${logoUrl}" alt="" class="company-logo" onerror="this.style.display='none'">`
+          : '';
+
+        return `
+          <div class="mentor-card-item" onclick="openMentorFromDirectory('${mentor.id}')">
+            <div class="mentor-card-header">
+              <div class="mentor-card-avatar">${avatarHtml}</div>
+              <div class="mentor-card-info">
+                <div class="mentor-card-name">${displayName}</div>
+                <div class="mentor-card-company">
+                  ${logoHtml}
+                  <span>${mentor.company || ''}</span>
+                </div>
+              </div>
+            </div>
+            <div class="mentor-card-tags">
+              ${mentor.industry ? `<span class="mentor-tag industry">${mentor.industry}</span>` : ''}
+              ${mentor.education ? `<span class="mentor-tag school">${mentor.education}</span>` : ''}
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // Open mentor modal from directory
+    function openMentorFromDirectory(mentorId) {
+      const mentor = allMentors.find(m => m.id === mentorId);
+      if (!mentor) return;
+
+      // Transform mentor data to match expected format
+      const mentorData = {
+        Name: mentor.name,
+        Headshot: mentor.headshot,
+        'Current/Upcoming Company': mentor.company,
+        'Job Title': mentor.jobTitle,
+        'Type of Mentor': mentor.type,
+        'Industry/Sector & Group': mentor.industry,
+        Education: mentor.education,
+        Degree: mentor.degree,
+        'Graduation Year': mentor.graduationYear,
+        Location: mentor.location,
+        LinkedIn: mentor.linkedin,
+        Skills: mentor.skills,
+        'Mentor Intro': mentor.intro,
+        'Previous Experience': mentor.previousExperience,
+        'What other offers did you receive?': mentor.otherOffers
+      };
+
+      // Temporarily store for modal
+      currentStudentData = currentStudentData || {};
+      currentStudentData._directoryMentor = mentorData;
+      openMentorModal('_directoryMentor');
+    }
+
+    // Attach search event listener
+    document.getElementById('mentorSearch').addEventListener('input', filterMentors);
+
+    // AI Chat State
+    let conversationHistory = [];
+
+    // Send a message to the AI
+    async function sendMessage(event) {
+      if (event) event.preventDefault();
+
+      const input = document.getElementById('chatInput');
+      const message = input.value.trim();
+
+      if (!message) return;
+
+      // Clear input and disable button
+      input.value = '';
+      input.style.height = 'auto';
+      document.getElementById('sendButton').disabled = true;
+
+      // Hide suggested prompts after first message
+      document.getElementById('suggestedPrompts').style.display = 'none';
+
+      // Add user message to chat
+      addMessageToChat(message, 'user');
+
+      // Add typing indicator
+      const typingId = addTypingIndicator();
+
+      try {
+        // Build student context from current data
+        const studentContext = currentStudentData ? {
+          name: currentStudentData['Preferred First Name'] || currentStudentData['Name']?.split(' ')[0],
+          university: currentStudentData['Current University / Institution'],
+          gradYear: currentStudentData['Graduation Year'],
+          major: currentStudentData['Degree / Major'],
+          industryInterest: currentStudentData['Primary Industry of Interest'],
+          dreamCompany: currentStudentData['Dream Company or Organization'],
+          goals: currentStudentData['Short-Term Goals (1-3 Years)']
+        } : null;
+
+        const response = await fetch(`${API_URL}/api/chat`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            message,
+            studentContext,
+            conversationHistory
+          })
+        });
+
+        const data = await response.json();
+
+        // Remove typing indicator
+        removeTypingIndicator(typingId);
+
+        if (!response.ok) {
+          throw new Error(data.error || 'Failed to get response');
+        }
+
+        // Add AI response to chat
+        addMessageToChat(data.message, 'ai');
+
+        // Update conversation history
+        conversationHistory.push({ role: 'user', content: message });
+        conversationHistory.push({ role: 'assistant', content: data.message });
+
+        // Keep history manageable (last 20 messages)
+        if (conversationHistory.length > 20) {
+          conversationHistory = conversationHistory.slice(-20);
+        }
+
+      } catch (err) {
+        removeTypingIndicator(typingId);
+        addMessageToChat('Sorry, I encountered an error. Please try again.', 'ai');
+        console.error('Chat error:', err);
+      }
+
+      document.getElementById('sendButton').disabled = false;
+      input.focus();
+    }
+
+    // Send a suggested prompt
+    function sendSuggestedPrompt(prompt) {
+      document.getElementById('chatInput').value = prompt;
+      sendMessage();
+    }
+
+    // Add a message to the chat display
+    function addMessageToChat(content, sender) {
+      const messagesContainer = document.getElementById('chatMessages');
+
+      const messageDiv = document.createElement('div');
+      messageDiv.className = `ai-message ${sender}`;
+
+      const avatarSvg = sender === 'ai'
+        ? `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+          </svg>`
+        : `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+          </svg>`;
+
+      // Format the content (convert markdown-like formatting)
+      const formattedContent = formatAIResponse(content);
+
+      messageDiv.innerHTML = `
+        <div class="ai-message-avatar">${avatarSvg}</div>
+        <div class="ai-message-content">${formattedContent}</div>
+      `;
+
+      messagesContainer.appendChild(messageDiv);
+      messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }
+
+    // Format AI response (basic markdown support)
+    function formatAIResponse(text) {
+      // Escape HTML
+      let formatted = text
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
+
+      // Convert **bold** to <strong>
+      formatted = formatted.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+
+      // Convert *italic* to <em>
+      formatted = formatted.replace(/\*(.+?)\*/g, '<em>$1</em>');
+
+      // Convert `code` to <code>
+      formatted = formatted.replace(/`(.+?)`/g, '<code>$1</code>');
+
+      // Convert bullet points
+      formatted = formatted.replace(/^[-•]\s+(.+)$/gm, '<li>$1</li>');
+      formatted = formatted.replace(/(<li>.*<\/li>\n?)+/g, '<ul>$&</ul>');
+
+      // Convert numbered lists
+      formatted = formatted.replace(/^\d+\.\s+(.+)$/gm, '<li>$1</li>');
+
+      // Convert paragraphs (double newlines)
+      formatted = formatted.replace(/\n\n/g, '</p><p>');
+      formatted = '<p>' + formatted + '</p>';
+
+      // Clean up empty paragraphs
+      formatted = formatted.replace(/<p><\/p>/g, '');
+      formatted = formatted.replace(/<p>(<ul>)/g, '$1');
+      formatted = formatted.replace(/(<\/ul>)<\/p>/g, '$1');
+
+      return formatted;
+    }
+
+    // Add typing indicator
+    function addTypingIndicator() {
+      const messagesContainer = document.getElementById('chatMessages');
+      const id = 'typing-' + Date.now();
+
+      const typingDiv = document.createElement('div');
+      typingDiv.id = id;
+      typingDiv.className = 'ai-message';
+      typingDiv.innerHTML = `
+        <div class="ai-message-avatar">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+          </svg>
+        </div>
+        <div class="ai-message-content">
+          <div class="ai-typing-indicator">
+            <span></span><span></span><span></span>
+          </div>
+        </div>
+      `;
+
+      messagesContainer.appendChild(typingDiv);
+      messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+      return id;
+    }
+
+    // Remove typing indicator
+    function removeTypingIndicator(id) {
+      const typingEl = document.getElementById(id);
+      if (typingEl) typingEl.remove();
+    }
+
+    // Handle Enter key in chat input (send on Enter, newline on Shift+Enter)
+    function handleChatKeydown(event) {
+      if (event.key === 'Enter' && !event.shiftKey) {
+        event.preventDefault();
+        sendMessage();
+      }
+    }
+
+    // Auto-resize textarea
+    document.getElementById('chatInput').addEventListener('input', function() {
+      this.style.height = 'auto';
+      this.style.height = Math.min(this.scrollHeight, 120) + 'px';
+    });
+
+    // Get company logo URL (returns null if not mapped)
+    function getCompanyLogoUrl(companyName) {
+      if (!companyName) return null;
+      const companyLower = companyName.toLowerCase();
+
+      const domainMap = {
+        'mckinsey': 'mckinsey.com',
+        'bain': 'bain.com',
+        'bcg': 'bcg.com',
+        'boston consulting': 'bcg.com',
+        'deloitte': 'deloitte.com',
+        'pwc': 'pwc.com',
+        'kpmg': 'kpmg.com',
+        'ey': 'ey.com',
+        'ernst': 'ey.com',
+        'accenture': 'accenture.com',
+        'oliver wyman': 'oliverwyman.com',
+        'goldman': 'goldmansachs.com',
+        'morgan stanley': 'morganstanley.com',
+        'jp morgan': 'jpmorgan.com',
+        'jpmorgan': 'jpmorgan.com',
+        'citi': 'citi.com',
+        'barclays': 'barclays.com',
+        'bank of america': 'bankofamerica.com',
+        'ubs': 'ubs.com',
+        'credit suisse': 'credit-suisse.com',
+        'deutsche bank': 'db.com',
+        'lazard': 'lazard.com',
+        'evercore': 'evercore.com',
+        'centerview': 'centerviewpartners.com',
+        'blackstone': 'blackstone.com',
+        'kkr': 'kkr.com',
+        'carlyle': 'carlyle.com',
+        'apollo': 'apollo.com',
+        'tpg': 'tpg.com',
+        'warburg': 'warburgpincus.com',
+        'general atlantic': 'generalatlantic.com',
+        'silver lake': 'silverlake.com',
+        'vista equity': 'vistaequitypartners.com',
+        'thoma bravo': 'thomabravo.com',
+        'capital one': 'capitalone.com',
+        'macquarie': 'macquarie.com',
+        'citadel': 'citadel.com',
+        'two sigma': 'twosigma.com',
+        'jane street': 'janestreet.com',
+        'point72': 'point72.com',
+        'bridgewater': 'bridgewater.com',
+        'google': 'google.com',
+        'meta': 'meta.com',
+        'amazon': 'amazon.com',
+        'apple': 'apple.com',
+        'microsoft': 'microsoft.com',
+        'netflix': 'netflix.com',
+      };
+
+      for (const [key, domain] of Object.entries(domainMap)) {
+        if (companyLower.includes(key)) {
+          return `https://logo.clearbit.com/${domain}`;
+        }
+      }
+      return null;
+    }
+
+    function openMentorModal(mentorType) {
+      const mentor = currentStudentData?.[mentorType];
+      if (!mentor) return;
+
+      // Set header info
+      document.getElementById('mentorModalName').textContent = mentor.Name || 'Unknown';
+
+      const subtitle = [mentor['Job Title'], mentor['Current/Upcoming Company']].filter(Boolean).join(' at ');
+      document.getElementById('mentorModalSubtitle').textContent = subtitle || mentor['Type of Mentor'] || '';
+
+      // Set avatar
+      const avatarEl = document.getElementById('mentorModalAvatar');
+      if (mentor.Headshot && mentor.Headshot.length > 0 && mentor.Headshot[0].thumbnails?.large?.url) {
+        avatarEl.innerHTML = `<img src="${mentor.Headshot[0].thumbnails.large.url}" alt="${mentor.Name}">`;
+      } else {
+        avatarEl.innerHTML = mentor.Name?.split(' ').map(n => n[0]).join('') || '--';
+      }
+
+      // Build body content
+      let bodyHTML = '';
+
+      // Add company info with logo if available
+      const company = mentor['Current/Upcoming Company'];
+      const jobTitle = mentor['Job Title'];
+      if (company) {
+        const logoUrl = getCompanyLogoUrl(company);
+        const logoHtml = logoUrl
+          ? `<div class="mentor-company-logo"><img src="${logoUrl}" alt="${company}" onerror="this.parentElement.style.display='none'"></div>`
+          : '';
+
+        bodyHTML += `
+          <div class="mentor-company-card">
+            ${logoHtml}
+            <div class="mentor-company-info">
+              <h4>${company}</h4>
+              ${jobTitle ? `<p>${jobTitle}</p>` : ''}
+              <span class="offer-badge">Upcoming Offer</span>
+            </div>
+          </div>
+        `;
+      }
+
+      // Add mentor intro if available
+      const intro = mentor['Mentor Intro'] || mentor['AI Mentor Intro']?.value;
+      if (intro) {
+        bodyHTML += `<div class="mentor-intro" style="margin-bottom: 1.5rem;">${intro}</div>`;
+      }
+
+      const fields = [
+        { label: 'Type of Mentor', value: mentor['Type of Mentor'], badge: true },
+        { label: 'Industry/Sector', value: mentor['Industry/Sector & Group'] },
+        { label: 'Education', value: mentor['Education'] },
+        { label: 'Degree', value: mentor['Degree'] },
+        { label: 'Graduation Year', value: mentor['Graduation Year'] },
+        { label: 'Location', value: mentor['Location'] },
+        { label: 'LinkedIn', value: mentor['LinkedIn'], link: true },
+        { label: 'Skills', value: mentor['Skills'] },
+        { label: 'Previous Experience', value: mentor['Previous Experience'], multiline: true },
+        { label: 'Other Offers', value: mentor['What other offers did you receive?'], multiline: true },
+      ];
+
+      fields.forEach(field => {
+        if (field.value) {
+          let valueHTML = field.value;
+
+          if (field.badge) {
+            valueHTML = `<span class="mentor-type-badge">${field.value}</span>`;
+          } else if (field.link) {
+            valueHTML = `<a href="${field.value}" target="_blank">${field.value}</a>`;
+          } else if (field.multiline) {
+            valueHTML = field.value.replace(/\n/g, '<br>');
+          }
+
+          bodyHTML += `
+            <div class="mentor-field">
+              <span class="mentor-field-label">${field.label}</span>
+              <span class="mentor-field-value">${valueHTML}</span>
+            </div>
+          `;
+        }
+      });
+
+      document.getElementById('mentorModalBody').innerHTML = bodyHTML;
+      document.getElementById('mentorModalOverlay').classList.add('active');
+    }
+
+    function closeMentorModal() {
+      document.getElementById('mentorModalOverlay').classList.remove('active');
+    }
+
+    // Close mentor modal on overlay click
+    document.getElementById('mentorModalOverlay').addEventListener('click', (e) => {
+      if (e.target === e.currentTarget) closeMentorModal();
+    });
+
+    function toggleNotes(el) {
+      el.classList.toggle('expanded');
+      const hint = el.querySelector('.expand-hint');
+      if (hint) {
+        hint.textContent = el.classList.contains('expanded') ? 'Click to collapse' : 'Click to expand';
+      }
+    }
+
+    function renderMeetings(meetings) {
+      const tbody = document.getElementById('meetingsTableBody');
+      const totalEl = document.getElementById('totalMeetings');
+      const lastDateEl = document.getElementById('lastMeetingDate');
+
+      // Update stats
+      totalEl.textContent = meetings.length;
+
+      if (meetings.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="5" class="no-meetings">No meetings recorded yet</td></tr>';
+        return;
+      }
+
+      // Sort by date descending
+      const sortedMeetings = [...meetings].sort((a, b) => {
+        const dateA = new Date(a['Meeting Date'] || 0);
+        const dateB = new Date(b['Meeting Date'] || 0);
+        return dateB - dateA;
+      });
+
+      // Last meeting date
+      if (sortedMeetings[0]['Meeting Date']) {
+        const lastDate = new Date(sortedMeetings[0]['Meeting Date']);
+        lastDateEl.textContent = lastDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+      }
+
+      // Render table rows
+      tbody.innerHTML = sortedMeetings.map(meeting => {
+        const mentorName = meeting.mentorAttended?.Name || meeting['Mentors Attended']?.[0] || '--';
+        const date = meeting['Meeting Date']
+          ? new Date(meeting['Meeting Date']).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+          : '--';
+        const type = meeting['Type of Meeting'] || '--';
+        const duration = meeting['Meeting Duration'] || '--';
+        const notes = meeting['Notes'] || '--';
+
+        // Determine type class for color coding
+        let typeClass = '';
+        const typeLower = type.toLowerCase();
+        if (typeLower.includes('technical')) typeClass = 'technical';
+        else if (typeLower.includes('strategy')) typeClass = 'strategy';
+        else if (typeLower.includes('behavioral')) typeClass = 'behavioral';
+
+        const escapedNotes = notes.replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+        const isLong = notes.length > 50;
+
+        return `
+          <tr>
+            <td><strong>${mentorName}</strong></td>
+            <td>${date}</td>
+            <td><span class="meeting-type ${typeClass}">${type}</span></td>
+            <td>${duration}</td>
+            <td class="meeting-notes ${isLong ? 'clickable' : ''}" onclick="toggleNotes(this)">
+              <span class="notes-text">${notes}</span>
+              ${isLong ? '<span class="expand-hint">Click to expand</span>' : ''}
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    // Initialize app on page load
+    initApp();
+  </script>
+</body>
+</html>
