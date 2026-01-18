@@ -410,6 +410,6 @@ app.get('/student/:email', async (req, res) => {
 });
 
 // Start server
-app.listen(PORT, () => {
-  console.log(`WSG Portal API running at http://localhost:${PORT}`);
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`WSG Portal API running on port ${PORT}`);
 });
