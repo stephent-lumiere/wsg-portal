@@ -518,7 +518,8 @@ app.post('/api/student/update', async (req, res) => {
       'GPA',
       'Current Clubs / Extracurriculars',
       'CV/Resume',
-      'Short-Term Goals (1-3 Years)'
+      'Short-Term Goals (1-3 Years)',
+      'What countries do you own a passport?'
     ];
 
     for (const field of allowedFields) {

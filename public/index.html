@@ -2280,6 +2280,10 @@
                   <span class="profile-stat-label">Target Company</span>
                   <span class="profile-stat-value" id="dreamCompany">--</span>
                 </div>
+                <div class="profile-stat-row">
+                  <span class="profile-stat-label">Passport Countries</span>
+                  <span class="profile-stat-value" id="passportCountries">--</span>
+                </div>
               </div>
               <div class="profile-documents">
                 <p class="documents-label">Documents</p>
@@ -2616,6 +2620,34 @@
         <div class="form-group">
           <label for="goals">Short-Term Goals</label>
           <textarea id="goals" name="goals" placeholder="What do you want to achieve in the next 1-3 years?"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="passportCountriesSelect">Passport Countries</label>
+          <select id="passportCountriesSelect" name="passportCountries" multiple style="height: 150px;">
+            <option value="USA">USA</option>
+            <option value="UK">UK</option>
+            <option value="Canada">Canada</option>
+            <option value="Australia">Australia</option>
+            <option value="India">India</option>
+            <option value="China">China</option>
+            <option value="Germany">Germany</option>
+            <option value="France">France</option>
+            <option value="Brazil">Brazil</option>
+            <option value="Japan">Japan</option>
+            <option value="South Korea">South Korea</option>
+            <option value="Mexico">Mexico</option>
+            <option value="Italy">Italy</option>
+            <option value="Spain">Spain</option>
+            <option value="Netherlands">Netherlands</option>
+            <option value="Singapore">Singapore</option>
+            <option value="Hong Kong">Hong Kong</option>
+            <option value="UAE">UAE</option>
+            <option value="Saudi Arabia">Saudi Arabia</option>
+            <option value="Nigeria">Nigeria</option>
+            <option value="South Africa">South Africa</option>
+            <option value="Other">Other</option>
+          </select>
+          <small style="color: #666; margin-top: 4px; display: block;">Hold Ctrl/Cmd to select multiple countries</small>
         </div>
         <div class="modal-actions">
           <button type="button" class="btn-secondary" onclick="closeModal()">Cancel</button>
@@ -2982,6 +3014,16 @@
         document.getElementById('industryFocus').textContent = student['Primary Industry of Interest'] || '--';
         document.getElementById('dreamCompany').textContent = student['Dream Company or Organization'] || '--';
 
+        // Passport Countries
+        const passportCountries = student['What countries do you own a passport?'];
+        if (passportCountries && Array.isArray(passportCountries) && passportCountries.length > 0) {
+          document.getElementById('passportCountries').textContent = passportCountries.join(', ');
+        } else if (typeof passportCountries === 'string' && passportCountries) {
+          document.getElementById('passportCountries').textContent = passportCountries;
+        } else {
+          document.getElementById('passportCountries').textContent = '--';
+        }
+
         // CV/Resume Link
         const cvData = student['CV/Resume'];
         const cvLinkEl = document.getElementById('cvResumeLink');
@@ -3024,6 +3066,14 @@
         }
         document.getElementById('goals').value = student['Short-Term Goals (1-3 Years)'] || '';
 
+        // Pre-fill Passport Countries multi-select
+        const passportSelect = document.getElementById('passportCountriesSelect');
+        const savedPassports = student['What countries do you own a passport?'] || [];
+        const passportArray = Array.isArray(savedPassports) ? savedPassports : (savedPassports ? [savedPassports] : []);
+        for (const option of passportSelect.options) {
+          option.selected = passportArray.includes(option.value);
+        }
+
       } catch (error) {
         console.error('Error loading student data:', error);
         document.getElementById('studentFullName').textContent = 'Error Loading Profile';
@@ -3058,6 +3108,10 @@
         return;
       }
 
+      // Get selected passport countries from multi-select
+      const passportSelect = document.getElementById('passportCountriesSelect');
+      const selectedPassports = Array.from(passportSelect.selectedOptions).map(opt => opt.value);
+
       const updates = {
         'Current University / Institution': document.getElementById('university').value,
         'Degree / Major': document.getElementById('major').value,
@@ -3065,7 +3119,8 @@
         'GPA': document.getElementById('gpa').value ? parseFloat(document.getElementById('gpa').value) : null,
         'Current Clubs / Extracurriculars': document.getElementById('clubs').value,
         'CV/Resume': document.getElementById('cvResumeUrl').value,
-        'Short-Term Goals (1-3 Years)': document.getElementById('goals').value
+        'Short-Term Goals (1-3 Years)': document.getElementById('goals').value,
+        'What countries do you own a passport?': selectedPassports.length > 0 ? selectedPassports : null
       };
 
       try {
