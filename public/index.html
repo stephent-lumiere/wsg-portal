@@ -288,6 +288,421 @@
       color: var(--gray-600);
     }
 
+    /* New Dashboard Layout */
+    .identity-section {
+      margin-bottom: 2rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--gray-200);
+    }
+
+    .identity-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .identity-info {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+
+    .identity-info .avatar {
+      width: 72px;
+      height: 72px;
+      font-size: 1.5rem;
+    }
+
+    .student-subtitle {
+      color: var(--gray-500);
+      font-size: 0.9375rem;
+      margin-top: 0.25rem;
+    }
+
+    .identity-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .support-pod {
+      background: var(--gray-50);
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      border: 1px solid var(--gray-200);
+    }
+
+    .support-pod-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--gray-500);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 1rem;
+    }
+
+    .support-pod-members {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .support-pod-note {
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--gray-200);
+      font-size: 0.8125rem;
+      color: var(--gray-500);
+    }
+
+    .support-pod-note a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .support-pod-note a:hover {
+      text-decoration: underline;
+    }
+
+    .support-member {
+      display: flex;
+      align-items: center;
+      gap: 0.875rem;
+      flex: 1;
+      padding: 0.75rem;
+      border-radius: 8px;
+      transition: background 0.2s ease;
+      cursor: pointer;
+    }
+
+    .support-member:hover {
+      background: var(--gray-100);
+    }
+
+    .support-member .mentor-avatar {
+      width: 48px;
+      height: 48px;
+      font-size: 1rem;
+    }
+
+    .support-member-info {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .support-member-role {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      color: var(--gray-500);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .support-member-name {
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: var(--gray-900);
+      margin-top: 0.125rem;
+    }
+
+    .support-member-email {
+      font-size: 0.75rem;
+      color: var(--gray-500);
+      margin-top: 0.125rem;
+    }
+
+    .support-member-email a {
+      color: var(--gray-500);
+      text-decoration: none;
+    }
+
+    .support-member-email a:hover {
+      color: var(--primary);
+      text-decoration: underline;
+    }
+
+    .support-action-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      border: 1px solid var(--gray-300);
+      background: var(--white);
+      color: var(--gray-600);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+    }
+
+    .support-action-btn:hover {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: var(--white);
+    }
+
+    /* Dashboard Grid */
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .section-card {
+      background: var(--white);
+      border-radius: 12px;
+      border: 1px solid var(--gray-200);
+      padding: 1.5rem;
+    }
+
+    .section-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .section-card-header h3 {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--gray-900);
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+
+    .btn-link {
+      background: none;
+      border: none;
+      color: var(--primary);
+      font-size: 0.8125rem;
+      font-weight: 500;
+      cursor: pointer;
+      padding: 0;
+    }
+
+    .btn-link:hover {
+      text-decoration: underline;
+    }
+
+    /* Progress Badge */
+    .progress-badge {
+      background: var(--primary);
+      color: var(--white);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.25rem 0.625rem;
+      border-radius: 9999px;
+    }
+
+    /* Module Content */
+    .module-title {
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: var(--gray-900);
+      margin-bottom: 1rem;
+    }
+
+    .progress-bar-container {
+      height: 8px;
+      background: var(--gray-200);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 1rem;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: var(--primary);
+      border-radius: 4px;
+      transition: width 0.3s ease;
+    }
+
+    .module-next {
+      display: flex;
+      gap: 0.5rem;
+      font-size: 0.875rem;
+    }
+
+    .module-next-label {
+      color: var(--gray-500);
+    }
+
+    .module-next-value {
+      color: var(--gray-900);
+      font-weight: 500;
+    }
+
+    /* Meeting Bridge */
+    .meeting-bridge {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .next-meeting-details {
+      margin-bottom: 1rem;
+    }
+
+    .meeting-datetime {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--gray-900);
+      font-weight: 600;
+      font-size: 0.9375rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .meeting-datetime svg {
+      color: var(--gray-400);
+    }
+
+    .meeting-focus {
+      color: var(--gray-600);
+      font-size: 0.875rem;
+      padding-left: 1.75rem;
+    }
+
+    .add-calendar-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.375rem;
+      font-size: 0.8125rem;
+      padding: 0.5rem 0.875rem;
+    }
+
+    /* Last Meeting Notes */
+    .last-meeting-meta {
+      display: flex;
+      gap: 2rem;
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--gray-100);
+    }
+
+    .last-meeting-mentor,
+    .last-meeting-date {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .meta-label {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      color: var(--gray-500);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .meta-value {
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: var(--gray-900);
+    }
+
+    .last-meeting-notes {
+      font-size: 0.875rem;
+      line-height: 1.6;
+      color: var(--gray-700);
+    }
+
+    .last-meeting-notes .placeholder-text {
+      color: var(--gray-400);
+      font-style: italic;
+    }
+
+    /* Professional Profile */
+    .profile-content-vertical {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .profile-stats-vertical {
+      display: flex;
+      flex-direction: column;
+      gap: 0.875rem;
+    }
+
+    .profile-stat-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 0.875rem;
+      border-bottom: 1px solid var(--gray-100);
+    }
+
+    .profile-stat-row:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .profile-stat-label {
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--gray-500);
+    }
+
+    .profile-stat-value {
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: var(--gray-900);
+    }
+
+    .profile-documents {
+      padding-top: 0.5rem;
+    }
+
+    .documents-label {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      color: var(--gray-500);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+    }
+
+    .document-list {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .document-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 0.875rem;
+      background: var(--gray-50);
+      border: 1px solid var(--gray-200);
+      border-radius: 6px;
+      color: var(--gray-700);
+      font-size: 0.8125rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .document-item:hover {
+      background: var(--gray-100);
+      border-color: var(--gray-300);
+      color: var(--primary);
+    }
+
+    .document-item.no-link {
+      color: var(--gray-400);
+      cursor: default;
+    }
+
+    .document-item.no-link:hover {
+      background: var(--gray-50);
+      border-color: var(--gray-200);
+      color: var(--gray-400);
+    }
+
     /* Update Button */
     .btn-primary {
       background: var(--primary);
@@ -1295,6 +1710,20 @@
       color: #166534;
     }
 
+    .mentor-card-offers {
+      margin-top: 0.75rem;
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--gray-200);
+      font-size: 0.8rem;
+      color: var(--gray-600);
+      line-height: 1.4;
+    }
+
+    .mentor-card-offers .offers-label {
+      font-weight: 600;
+      color: var(--gray-700);
+    }
+
     /* AI Chat Styles */
     .ai-chat-container {
       display: flex;
@@ -1546,6 +1975,131 @@
       0%, 60%, 100% { transform: translateY(0); }
       30% { transform: translateY(-4px); }
     }
+
+    /* Resources Section Styles */
+    .resources-page {
+      max-width: 700px;
+    }
+
+    .resources-page-header {
+      margin-bottom: 2rem;
+    }
+
+    .resources-page-header h2 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--primary);
+      letter-spacing: -0.02em;
+      margin-bottom: 0.375rem;
+    }
+
+    .resources-page-header p {
+      font-size: 0.9375rem;
+      color: var(--gray-500);
+    }
+
+    .resources-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .resource-group {
+      background: var(--gray-50);
+      border: 1px solid var(--gray-200);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .resource-group-label {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      color: var(--gray-500);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 0.75rem 1rem;
+      background: var(--gray-100);
+      border-bottom: 1px solid var(--gray-200);
+    }
+
+    .resource-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.875rem 1rem;
+      text-decoration: none;
+      border-bottom: 1px solid var(--gray-100);
+      transition: background 0.15s ease;
+    }
+
+    .resource-item:last-child {
+      border-bottom: none;
+    }
+
+    .resource-item:hover {
+      background: var(--white);
+    }
+
+    .resource-item.featured {
+      background: linear-gradient(90deg, #f0f9ff 0%, transparent 100%);
+    }
+
+    .resource-item.featured:hover {
+      background: linear-gradient(90deg, #e0f2fe 0%, var(--white) 100%);
+    }
+
+    .resource-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .resource-dot.finance { background: #22c55e; }
+    .resource-dot.consulting { background: #f59e0b; }
+    .resource-dot.networking { background: #6366f1; }
+    .resource-dot.linkedin { background: #0077b5; }
+    .resource-dot.email { background: #ec4899; }
+    .resource-dot.request { background: #06b6d4; }
+    .resource-dot.resume { background: #a855f7; }
+
+    .resource-title {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--gray-900);
+      flex: 1;
+      min-width: 0;
+    }
+
+    .resource-desc {
+      font-size: 0.8125rem;
+      color: var(--gray-400);
+      display: none;
+    }
+
+    .resource-link {
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--gray-400);
+      padding: 0.25rem 0.625rem;
+      border-radius: 4px;
+      background: var(--gray-100);
+      transition: all 0.15s ease;
+    }
+
+    .resource-item:hover .resource-link {
+      background: var(--primary);
+      color: white;
+    }
+
+    @media (min-width: 640px) {
+      .resource-desc {
+        display: block;
+        flex-shrink: 0;
+        width: 180px;
+        text-align: right;
+      }
+    }
   </style>
 </head>
 <body>
@@ -1566,7 +2120,7 @@
       <form class="login-form" id="loginForm">
         <div class="form-group">
           <label for="loginEmail">Email Address</label>
-          <input type="email" id="loginEmail" placeholder="your.email@example.com" required>
+          <input type="text" id="loginEmail" placeholder="your.email@example.com" required>
         </div>
         <button type="submit" class="btn-primary" id="loginBtn">Send Magic Link</button>
       </form>
@@ -1639,17 +2193,11 @@
           </svg>
           WSG AI Expert
         </li>
-        <li class="nav-item" data-section="progress">
-          <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
-          </svg>
-          Progress
-        </li>
         <li class="nav-item" data-section="resources">
           <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
           </svg>
-          Resources
+          Student Resources
         </li>
       </ul>
     </aside>
@@ -1658,117 +2206,149 @@
     <main class="main">
       <!-- Profile Section -->
       <section id="section-profile" class="content-section active">
-      <div class="student-header">
-        <div class="student-header-top">
-          <div>
-            <h1 class="student-name" id="studentFullName">Loading...</h1>
-            <div class="student-meta">
-              <span class="student-meta-item">
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
-                </svg>
-                <span id="studentUniversity">--</span>
-              </span>
-              <span class="student-meta-item">
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                </svg>
-                Class of <span id="studentGradYear">--</span>
-              </span>
+
+        <!-- SECTION 1: Identity & Support Team -->
+        <div class="identity-section">
+          <div class="identity-header">
+            <div class="identity-info">
+              <div class="avatar" id="avatarInitials">--</div>
+              <div>
+                <h1 class="student-name" id="studentFullName">Loading...</h1>
+                <p class="student-subtitle"><span id="studentUniversity">--</span> | Class of <span id="studentGradYear">--</span></p>
+              </div>
+            </div>
+            <div class="identity-actions">
+              <button class="logout-btn" onclick="logout()">Sign Out</button>
             </div>
           </div>
-          <div style="display: flex; align-items: center; gap: 1rem;">
-            <div class="avatar" id="avatarInitials">--</div>
-            <button class="logout-btn" onclick="logout()">Sign Out</button>
+
+          <div class="support-pod">
+            <p class="support-pod-label">Your Support Team</p>
+            <div class="support-pod-members">
+              <!-- Lead Mentor -->
+              <div class="support-member" id="leadMentorCard">
+                <div class="mentor-avatar" id="mentorAvatar">--</div>
+                <div class="support-member-info">
+                  <span class="support-member-role">Lead Mentor</span>
+                  <span class="support-member-name" id="mentorName">Loading...</span>
+                  <span class="support-member-email" id="mentorEmail"></span>
+                </div>
+                <button class="support-action-btn" id="mentorEmailBtn" title="Send Email">
+                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="18" height="18">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                  </svg>
+                </button>
+              </div>
+              <!-- Recruitment Manager -->
+              <div class="support-member" id="rmCard">
+                <div class="mentor-avatar secondary" id="rmAvatar">--</div>
+                <div class="support-member-info">
+                  <span class="support-member-role">Recruitment Manager</span>
+                  <span class="support-member-name" id="rmName">Loading...</span>
+                  <span class="support-member-email" id="rmEmail"></span>
+                </div>
+                <button class="support-action-btn" id="rmEmailBtn" title="Send Email">
+                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="18" height="18">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <p class="support-pod-note">For questions about your mentor, email or Slack Sagar Bhargava at <a href="mailto:sagar.bhargava@lumiere.education">sagar.bhargava@lumiere.education</a></p>
           </div>
         </div>
-      </div>
 
-      <div class="cards-grid">
-        <!-- Current Module Card -->
-        <div class="card">
-          <div class="card-header">
-            <p class="card-title">Current Module</p>
-            <span class="status-badge">In Progress</span>
+        <!-- Main Content Grid: Professional Profile & Last Meeting Notes -->
+        <div class="dashboard-grid">
+
+          <!-- Professional Profile (Left) -->
+          <div class="section-card">
+            <div class="section-card-header">
+              <h3>Professional Profile</h3>
+            </div>
+            <div class="profile-content-vertical">
+              <div class="profile-stats-vertical">
+                <div class="profile-stat-row">
+                  <span class="profile-stat-label">GPA</span>
+                  <span class="profile-stat-value" id="studentGPA">--</span>
+                </div>
+                <div class="profile-stat-row">
+                  <span class="profile-stat-label">Industry Focus</span>
+                  <span class="profile-stat-value" id="industryFocus">--</span>
+                </div>
+                <div class="profile-stat-row">
+                  <span class="profile-stat-label">Target Company</span>
+                  <span class="profile-stat-value" id="dreamCompany">--</span>
+                </div>
+              </div>
+              <div class="profile-documents">
+                <p class="documents-label">Documents</p>
+                <div class="document-list">
+                  <a class="document-item" id="cvResumeLink" href="#" target="_blank">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="18" height="18">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                    </svg>
+                    <span>Latest Resume</span>
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
-          <p class="card-value" id="currentModule">Loading...</p>
-          <p class="card-subtitle" id="moduleStatus">--</p>
-        </div>
 
-        <!-- Lead Mentor Card -->
-        <div class="card">
-          <p class="card-title">Lead Mentor</p>
-          <div class="mentor-card" id="leadMentorCard">
-            <div class="mentor-avatar" id="mentorAvatar">--</div>
-            <div class="mentor-info">
-              <h4 id="mentorName">Loading...</h4>
-              <p>Lead Mentor</p>
+          <!-- Last Meeting Notes (Right) -->
+          <div class="section-card">
+            <div class="section-card-header">
+              <h3>Last Meeting Notes</h3>
+            </div>
+            <div class="last-meeting-content" id="lastMeetingContent">
+              <div class="last-meeting-meta">
+                <div class="last-meeting-mentor">
+                  <span class="meta-label">Met with:</span>
+                  <span class="meta-value" id="lastMeetingMentor">--</span>
+                </div>
+                <div class="last-meeting-date">
+                  <span class="meta-label">Date:</span>
+                  <span class="meta-value" id="lastMeetingDate">--</span>
+                </div>
+              </div>
+              <div class="last-meeting-notes" id="lastMeetingNotes">
+                <p class="placeholder-text">No meeting notes yet</p>
+              </div>
             </div>
           </div>
         </div>
 
-        <!-- Recruitment Manager Card -->
-        <div class="card">
-          <p class="card-title">Recruitment Manager</p>
-          <div class="mentor-card" id="rmCard">
-            <div class="mentor-avatar secondary" id="rmAvatar">--</div>
-            <div class="mentor-info">
-              <h4 id="rmName">Loading...</h4>
-              <p>Recruitment Manager</p>
+        <!-- Meetings History Section -->
+        <div class="meetings-section">
+          <div class="meetings-header">
+            <h3>Meeting History</h3>
+            <div class="meetings-stats">
+              <div class="stat">
+                <span class="stat-value" id="totalMeetings">0</span>
+                <span class="stat-label">Total Sessions</span>
+              </div>
             </div>
+          </div>
+          <div class="meetings-table-container">
+            <table class="meetings-table">
+              <thead>
+                <tr>
+                  <th>Mentor</th>
+                  <th>Date</th>
+                  <th>Type</th>
+                  <th>Duration</th>
+                  <th>Notes</th>
+                </tr>
+              </thead>
+              <tbody id="meetingsTableBody">
+                <tr>
+                  <td colspan="5" class="loading-row">Loading meetings...</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
 
-        <!-- Industry Focus Card -->
-        <div class="card">
-          <p class="card-title">Industry Focus</p>
-          <p class="card-value" id="industryFocus">--</p>
-          <p class="card-subtitle" id="dreamCompany">--</p>
-        </div>
-
-        <!-- Goals Card -->
-        <div class="card full-width">
-          <p class="card-title">Career Goals</p>
-          <p class="card-value" id="careerGoals">Loading...</p>
-        </div>
-      </div>
-
-      <!-- Meetings Section -->
-      <div class="meetings-section">
-        <div class="meetings-header">
-          <h3>Meetings with WSG Mentors</h3>
-          <div class="meetings-stats">
-            <div class="stat">
-              <span class="stat-value" id="totalMeetings">0</span>
-              <span class="stat-label">Total Sessions</span>
-            </div>
-            <div class="stat">
-              <span class="stat-value" id="lastMeetingDate">--</span>
-              <span class="stat-label">Last Meeting</span>
-            </div>
-          </div>
-        </div>
-        <div class="meetings-table-container">
-          <table class="meetings-table">
-            <thead>
-              <tr>
-                <th>Mentor</th>
-                <th>Date</th>
-                <th>Type</th>
-                <th>Duration</th>
-                <th>Notes</th>
-              </tr>
-            </thead>
-            <tbody id="meetingsTableBody">
-              <tr>
-                <td colspan="5" class="loading-row">Loading meetings...</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <button class="btn-primary" onclick="openModal()" style="margin-top: 2rem;">Update Background</button>
       </section>
 
       <!-- Find a Mentor Section -->
@@ -1903,6 +2483,76 @@
           </div>
         </div>
       </section>
+
+      <!-- Resources Section -->
+      <section id="section-resources" class="content-section">
+        <div class="resources-page">
+          <div class="resources-page-header">
+            <h2>Student Resources</h2>
+            <p>Quick access to guides, templates, and tools for your recruiting journey</p>
+          </div>
+
+          <div class="resources-list">
+            <!-- Technical Curriculum -->
+            <div class="resource-group">
+              <div class="resource-group-label">Technical Curriculum</div>
+              <a href="https://www.notion.so/Student-Guide-8-Week-Intensive-Investment-Banking-Technical-Curriculum-214a0d4fb23a80fea2c0e2cb12e24e33" target="_blank" class="resource-item">
+                <span class="resource-dot finance"></span>
+                <span class="resource-title">Finance Technical Curriculum</span>
+                <span class="resource-desc">8-week IB technical prep</span>
+                <span class="resource-link">Open</span>
+              </a>
+              <a href="https://www.notion.so/Student-Guide-8-Week-Management-Consulting-Case-Prep-Curriculum-257a0d4fb23a8067bb19c7e00dd6417f" target="_blank" class="resource-item">
+                <span class="resource-dot consulting"></span>
+                <span class="resource-title">Management Consulting Case Prep</span>
+                <span class="resource-desc">8-week case interview curriculum</span>
+                <span class="resource-link">Open</span>
+              </a>
+            </div>
+
+            <!-- Networking & Outreach -->
+            <div class="resource-group">
+              <div class="resource-group-label">Networking & Outreach</div>
+              <a href="https://www.notion.so/Networking-Guide-for-Students-23fa0d4fb23a808fa46cfc269e06824c" target="_blank" class="resource-item">
+                <span class="resource-dot networking"></span>
+                <span class="resource-title">Networking Guide for Students</span>
+                <span class="resource-desc">Master professional networking</span>
+                <span class="resource-link">Open</span>
+              </a>
+              <a href="https://www.notion.so/How-to-Automate-LinkedIn-Outreach-via-Dripify-22da0d4fb23a8063999bd813ac80d9a9" target="_blank" class="resource-item">
+                <span class="resource-dot linkedin"></span>
+                <span class="resource-title">Automate LinkedIn Outreach</span>
+                <span class="resource-desc">Scale outreach with Dripify</span>
+                <span class="resource-link">Open</span>
+              </a>
+              <a href="https://www.notion.so/Cold-Email-Templates-28fa0d4fb23a80e883d4d0c13067b8c4" target="_blank" class="resource-item">
+                <span class="resource-dot email"></span>
+                <span class="resource-title">Cold Email Templates</span>
+                <span class="resource-desc">Proven outreach templates</span>
+                <span class="resource-link">Open</span>
+              </a>
+              <a href="https://airtable.com/appewxAHjE5Z78ACz/shrLkPpBOyQQipsU7" target="_blank" class="resource-item featured">
+                <span class="resource-dot request"></span>
+                <span class="resource-title">Data Collection Request Form</span>
+                <span class="resource-desc">Request cold outreach data</span>
+                <span class="resource-link">Open</span>
+              </a>
+            </div>
+
+            <!-- Career Documents -->
+            <div class="resource-group">
+              <div class="resource-group-label">Career Documents</div>
+              <a href="https://www.notion.so/How-to-update-your-CV-LinkedIn-Banking-Consulting-2bea0d4fb23a80b8b3f8dbbd50892c10" target="_blank" class="resource-item">
+                <span class="resource-dot resume"></span>
+                <span class="resource-title">How to Update Your CV/Resume</span>
+                <span class="resource-desc">Optimize for banking & consulting</span>
+                <span class="resource-link">Open</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
     </main>
   </div>
 
@@ -1930,7 +2580,7 @@
   <!-- Update Background Modal -->
   <div class="modal-overlay" id="modalOverlay">
     <div class="modal">
-      <h3>Update Your Background</h3>
+      <h3>Edit Profile</h3>
       <form id="backgroundForm">
         <div class="form-group">
           <label for="university">University / Institution</label>
@@ -1952,12 +2602,24 @@
           </select>
         </div>
         <div class="form-group">
+          <label for="gpa">GPA</label>
+          <input type="number" id="gpa" name="gpa" placeholder="e.g., 3.85" step="0.01" min="0" max="4.0">
+        </div>
+        <div class="form-group">
+          <label for="clubs">Clubs & Activities</label>
+          <textarea id="clubs" name="clubs" placeholder="List your clubs, organizations, and extracurricular activities"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="cvResumeUrl">CV / Resume Link</label>
+          <input type="url" id="cvResumeUrl" name="cvResumeUrl" placeholder="https://drive.google.com/...">
+        </div>
+        <div class="form-group">
           <label for="goals">Short-Term Goals</label>
           <textarea id="goals" name="goals" placeholder="What do you want to achieve in the next 1-3 years?"></textarea>
         </div>
         <div class="modal-actions">
           <button type="button" class="btn-secondary" onclick="closeModal()">Cancel</button>
-          <button type="submit" class="btn-primary">Save Changes</button>
+          <button type="submit" class="btn-primary" id="saveProfileBtn">Save Changes</button>
         </div>
       </form>
     </div>
@@ -2029,7 +2691,7 @@
     // Magic link form handler
     document.getElementById('loginForm').addEventListener('submit', async (e) => {
       e.preventDefault();
-      const email = document.getElementById('loginEmail').value.trim();
+      const emailInput = document.getElementById('loginEmail').value.trim();
       const errorEl = document.getElementById('loginError');
       const btnEl = document.getElementById('loginBtn');
 
@@ -2038,6 +2700,33 @@
       btnEl.disabled = true;
 
       try {
+        // Dev bypass: if input starts with "dev" or "admin", use dev login
+        const lowerInput = emailInput.toLowerCase();
+        if (lowerInput === 'dev' || lowerInput === 'admin' || lowerInput.startsWith('dev ')) {
+          // Extract email if provided (e.g., "dev jasslyn@example.com")
+          const devEmail = lowerInput.startsWith('dev ') ? emailInput.substring(4).trim() : null;
+
+          const response = await fetch(`${API_URL}/api/auth/dev-login`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email: devEmail })
+          });
+
+          const data = await response.json();
+
+          if (!response.ok) {
+            throw new Error(data.error || 'Dev login failed');
+          }
+
+          // Save session and show app directly
+          setSession(data.student.email, data.session.token, data.session.expiresAt);
+          showApp();
+          loadStudentData();
+          return;
+        }
+
+        // Normal magic link flow
+        const email = emailInput;
         const response = await fetch(`${API_URL}/api/auth/magic-link`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -2146,12 +2835,14 @@
 
         const student = await response.json();
         currentStudentData = student;
+        console.log('Student data from API:', student);
 
-        // Student Name - Use the Name field or construct from available data
+        // SECTION 1: Identity & Support Team
+        // Student Name
         const fullName = student['Name'] || student['Student ID'] || 'Student';
         document.getElementById('studentFullName').textContent = fullName;
 
-        // Avatar - use headshot if available, otherwise initials
+        // Avatar
         const avatarEl = document.getElementById('avatarInitials');
         const headshot = student['Headshot'];
         if (headshot && headshot.length > 0 && headshot[0].thumbnails?.large?.url) {
@@ -2166,22 +2857,13 @@
         document.getElementById('studentUniversity').textContent = student['Current University / Institution'] || '--';
         document.getElementById('studentGradYear').textContent = student['Graduation Year'] || '--';
 
-        // Current Module
-        document.getElementById('currentModule').textContent = student['Current Module'] || 'Getting Started';
-        document.getElementById('moduleStatus').textContent = student['Degree / Major'] || '--';
-
-        // Industry Focus
-        document.getElementById('industryFocus').textContent = student['Primary Industry of Interest'] || '--';
-        document.getElementById('dreamCompany').textContent = student['Dream Company or Organization'] || '--';
-
-        // Lead Mentor
+        // Lead Mentor (Support Pod)
         const leadMentorCard = document.getElementById('leadMentorCard');
         if (student.leadMentor) {
           const mentor = student.leadMentor;
           const mentorName = mentor.Name || 'Not Assigned';
           document.getElementById('mentorName').textContent = mentorName;
 
-          // Mentor avatar with photo
           const mentorAvatarEl = document.getElementById('mentorAvatar');
           if (mentor.Headshot && mentor.Headshot.length > 0 && mentor.Headshot[0].thumbnails?.large?.url) {
             mentorAvatarEl.innerHTML = `<img src="${mentor.Headshot[0].thumbnails.large.url}" alt="${mentorName}">`;
@@ -2189,24 +2871,35 @@
             mentorAvatarEl.textContent = mentorName.split(' ').map(n => n[0]).join('');
           }
 
-          // Ensure clickable
-          leadMentorCard.classList.add('clickable');
+          // Display mentor email
+          const mentorEmailEl = document.getElementById('mentorEmail');
+          const mentorEmail = mentor.Email || mentor['Email Address'];
+          if (mentorEmail) {
+            mentorEmailEl.innerHTML = `<a href="mailto:${mentorEmail}">${mentorEmail}</a>`;
+            // Set up email button
+            const mentorEmailBtn = document.getElementById('mentorEmailBtn');
+            mentorEmailBtn.onclick = (e) => {
+              e.stopPropagation();
+              window.location.href = `mailto:${mentorEmail}`;
+            };
+          } else {
+            mentorEmailEl.textContent = '';
+          }
+
           leadMentorCard.onclick = () => openMentorModal('leadMentor');
         } else {
           document.getElementById('mentorName').textContent = 'Not Assigned';
           document.getElementById('mentorAvatar').textContent = '--';
-          leadMentorCard.classList.remove('clickable');
-          leadMentorCard.onclick = null;
+          document.getElementById('mentorEmail').textContent = '';
         }
 
-        // Recruitment Manager
+        // Recruitment Manager (Support Pod)
         const rmCard = document.getElementById('rmCard');
         if (student.recruitmentManager) {
           const rm = student.recruitmentManager;
           const rmName = rm.Name || 'Not Assigned';
           document.getElementById('rmName').textContent = rmName;
 
-          // RM avatar with photo
           const rmAvatarEl = document.getElementById('rmAvatar');
           if (rm.Headshot && rm.Headshot.length > 0 && rm.Headshot[0].thumbnails?.large?.url) {
             rmAvatarEl.innerHTML = `<img src="${rm.Headshot[0].thumbnails.large.url}" alt="${rmName}">`;
@@ -2214,26 +2907,121 @@
             rmAvatarEl.textContent = rmName.split(' ').map(n => n[0]).join('');
           }
 
-          // Ensure clickable
-          rmCard.classList.add('clickable');
+          // Display RM email
+          const rmEmailEl = document.getElementById('rmEmail');
+          const rmEmailAddr = rm.Email || rm['Email Address'];
+          if (rmEmailAddr) {
+            rmEmailEl.innerHTML = `<a href="mailto:${rmEmailAddr}">${rmEmailAddr}</a>`;
+            // Set up email button
+            const rmEmailBtn = document.getElementById('rmEmailBtn');
+            rmEmailBtn.onclick = (e) => {
+              e.stopPropagation();
+              window.location.href = `mailto:${rmEmailAddr}`;
+            };
+          } else {
+            rmEmailEl.textContent = '';
+          }
+
           rmCard.onclick = () => openMentorModal('recruitmentManager');
         } else {
           document.getElementById('rmName').textContent = 'Not Assigned';
           document.getElementById('rmAvatar').textContent = '--';
-          rmCard.classList.remove('clickable');
-          rmCard.onclick = null;
+          document.getElementById('rmEmail').textContent = '';
         }
 
-        // Career Goals
-        document.getElementById('careerGoals').textContent = student['Short-Term Goals (1-3 Years)'] || 'No goals set';
+        // Last Meeting Notes
+        const meetings = student.meetings || [];
 
-        // Render Meetings
-        renderMeetings(student.meetings || []);
+        // Sort meetings by date (most recent first) - use same logic as renderMeetings
+        const sortedMeetings = [...meetings].sort((a, b) => {
+          const dateA = new Date(a['Meeting Date'] || 0);
+          const dateB = new Date(b['Meeting Date'] || 0);
+          return dateB - dateA;
+        });
+
+        if (sortedMeetings.length > 0) {
+          const lastMeeting = sortedMeetings[0];
+          console.log('Most recent meeting:', lastMeeting);
+
+          // Mentor name - use the hydrated mentorAttended object
+          const mentorName = lastMeeting.mentorAttended?.Name || 'Mentor';
+          document.getElementById('lastMeetingMentor').textContent = mentorName;
+
+          // Meeting date
+          const meetingDate = new Date(lastMeeting['Meeting Date']);
+          document.getElementById('lastMeetingDate').textContent = meetingDate.toLocaleDateString('en-US', {
+            weekday: 'long',
+            month: 'long',
+            day: 'numeric',
+            year: 'numeric'
+          });
+
+          // Meeting notes - use same field as the table ('Notes')
+          const notes = lastMeeting['Notes'];
+          const notesEl = document.getElementById('lastMeetingNotes');
+          if (notes) {
+            notesEl.innerHTML = `<p>${notes.replace(/\n/g, '</p><p>')}</p>`;
+          } else {
+            notesEl.innerHTML = '<p class="placeholder-text">No notes recorded for this meeting</p>';
+          }
+        } else {
+          document.getElementById('lastMeetingMentor').textContent = '--';
+          document.getElementById('lastMeetingDate').textContent = '--';
+          document.getElementById('lastMeetingNotes').innerHTML = '<p class="placeholder-text">No meetings yet</p>';
+        }
+
+        // Render full meetings table
+        renderMeetings(meetings);
+
+        // SECTION 5: Professional Profile
+        // GPA
+        const gpa = student['GPA'];
+        document.getElementById('studentGPA').textContent = gpa ? parseFloat(gpa).toFixed(2) : '--';
+
+        // Industry Focus
+        document.getElementById('industryFocus').textContent = student['Primary Industry of Interest'] || '--';
+        document.getElementById('dreamCompany').textContent = student['Dream Company or Organization'] || '--';
+
+        // CV/Resume Link
+        const cvData = student['CV/Resume'];
+        const cvLinkEl = document.getElementById('cvResumeLink');
+        let cvLink = null;
+        if (cvData) {
+          if (typeof cvData === 'string') {
+            cvLink = cvData;
+          } else if (cvData.url) {
+            cvLink = cvData.url;
+          } else if (Array.isArray(cvData) && cvData[0]?.url) {
+            cvLink = cvData[0].url;
+          }
+        }
+        if (cvLink) {
+          cvLinkEl.href = cvLink;
+          cvLinkEl.classList.remove('no-link');
+        } else {
+          cvLinkEl.href = '#';
+          cvLinkEl.classList.add('no-link');
+          cvLinkEl.onclick = (e) => e.preventDefault();
+        }
+
 
         // Pre-fill form
         document.getElementById('university').value = student['Current University / Institution'] || '';
         document.getElementById('major').value = student['Degree / Major'] || '';
         document.getElementById('gradYear').value = student['Graduation Year'] || '';
+        document.getElementById('gpa').value = student['GPA'] || '';
+        document.getElementById('clubs').value = student['Current Clubs / Extracurriculars'] || '';
+        // Pre-fill CV/Resume (handle object or string format)
+        const cvPrefill = student['CV/Resume'];
+        if (typeof cvPrefill === 'string') {
+          document.getElementById('cvResumeUrl').value = cvPrefill;
+        } else if (cvPrefill?.url) {
+          document.getElementById('cvResumeUrl').value = cvPrefill.url;
+        } else if (Array.isArray(cvPrefill) && cvPrefill[0]?.url) {
+          document.getElementById('cvResumeUrl').value = cvPrefill[0].url;
+        } else {
+          document.getElementById('cvResumeUrl').value = '';
+        }
         document.getElementById('goals').value = student['Short-Term Goals (1-3 Years)'] || '';
 
       } catch (error) {
@@ -2254,10 +3042,55 @@
       if (e.target === e.currentTarget) closeModal();
     });
 
-    document.getElementById('backgroundForm').addEventListener('submit', (e) => {
+    document.getElementById('backgroundForm').addEventListener('submit', async (e) => {
       e.preventDefault();
-      alert('Background update functionality coming soon!');
-      closeModal();
+
+      const saveBtn = document.getElementById('saveProfileBtn');
+      const originalText = saveBtn.textContent;
+      saveBtn.textContent = 'Saving...';
+      saveBtn.disabled = true;
+
+      const email = getLoggedInEmail();
+      if (!email) {
+        alert('You must be logged in to update your profile.');
+        saveBtn.textContent = originalText;
+        saveBtn.disabled = false;
+        return;
+      }
+
+      const updates = {
+        'Current University / Institution': document.getElementById('university').value,
+        'Degree / Major': document.getElementById('major').value,
+        'Graduation Year': document.getElementById('gradYear').value ? parseInt(document.getElementById('gradYear').value) : null,
+        'GPA': document.getElementById('gpa').value ? parseFloat(document.getElementById('gpa').value) : null,
+        'Current Clubs / Extracurriculars': document.getElementById('clubs').value,
+        'CV/Resume': document.getElementById('cvResumeUrl').value,
+        'Short-Term Goals (1-3 Years)': document.getElementById('goals').value
+      };
+
+      try {
+        const response = await fetch(`${API_URL}/api/student/update`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, updates })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.error || 'Failed to update profile');
+        }
+
+        closeModal();
+        await loadStudentData();
+
+      } catch (err) {
+        console.error('Profile update error:', err);
+        alert(err.message || 'Failed to save changes. Please try again.');
+      } finally {
+        saveBtn.textContent = originalText;
+        saveBtn.disabled = false;
+      }
     });
 
     document.querySelectorAll('.nav-item').forEach(item => {
@@ -2540,6 +3373,7 @@
               ${mentor.industry ? `<span class="mentor-tag industry">${mentor.industry}</span>` : ''}
               ${mentor.education ? `<span class="mentor-tag school">${mentor.education}</span>` : ''}
             </div>
+            ${mentor.otherOffers ? `<div class="mentor-card-offers"><span class="offers-label">Other Offers:</span> ${mentor.otherOffers}</div>` : ''}
           </div>
         `;
       }).join('');

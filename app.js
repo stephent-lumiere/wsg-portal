@@ -26,6 +26,25 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static('public'));
 
+// Health check endpoint (no dependencies)
+app.get('/health', (req, res) => {
+  res.json({
+    status: 'ok',
+    timestamp: new Date().toISOString(),
+    port: PORT,
+    hasAirtable: !!(process.env.AIRTABLE_PAT && process.env.AIRTABLE_BASE_ID)
+  });
+});
+
+// Log environment status on startup
+console.log('Environment check:', {
+  PORT,
+  hasAirtablePat: !!process.env.AIRTABLE_PAT,
+  hasAirtableBaseId: !!process.env.AIRTABLE_BASE_ID,
+  hasAnthropicKey: !!process.env.ANTHROPIC_API_KEY,
+  hasResendKey: !!process.env.RESEND_API_KEY
+});
+
 // Airtable setup
 const base = new Airtable({ apiKey: process.env.AIRTABLE_PAT }).base(process.env.AIRTABLE_BASE_ID);
 
@@ -218,6 +237,58 @@ app.post('/api/auth/magic-link', async (req, res) => {
   }
 });
 
+// Dev login bypass (only works in dev mode)
+app.post('/api/auth/dev-login', async (req, res) => {
+  try {
+    // Only allow when DEV_MODE is enabled
+    if (process.env.DEV_MODE !== 'true') {
+      return res.status(403).json({ error: 'Dev login not available in production' });
+    }
+
+    const { email } = req.body;
+    const testEmail = email || process.env.DEV_TEST_EMAIL || 'test@example.com';
+    const normalizedEmail = testEmail.toLowerCase().trim();
+
+    // Check if student exists
+    const records = await base('Students')
+      .select({
+        filterByFormula: `{Student's Email} = '${normalizedEmail}'`,
+        maxRecords: 1
+      })
+      .firstPage();
+
+    if (records.length === 0) {
+      return res.status(404).json({ error: `No student found with email: ${normalizedEmail}` });
+    }
+
+    const student = records[0];
+
+    // Generate session token directly
+    const sessionToken = uuidv4();
+    const sessionExpiresAt = Date.now() + SESSION_DURATION_MS;
+
+    console.log(`\n🔓 Dev login for: ${normalizedEmail}\n`);
+
+    res.json({
+      success: true,
+      session: {
+        token: sessionToken,
+        expiresAt: sessionExpiresAt
+      },
+      student: {
+        id: student.id,
+        email: student.get("Student's Email"),
+        name: student.get('Name') || student.get('Student ID'),
+        firstName: student.get('Preferred First Name')
+      }
+    });
+
+  } catch (err) {
+    console.error('Dev login error:', err.message);
+    res.status(500).json({ error: 'Dev login failed', details: err.message });
+  }
+});
+
 // Verify magic link token
 app.post('/api/auth/verify', async (req, res) => {
   try {
@@ -406,6 +477,74 @@ app.get('/student/:email', async (req, res) => {
     res.json(student);
   } catch (err) {
     res.status(500).json({ error: 'Failed to fetch student', details: err.message });
+  }
+});
+
+// Update student profile
+app.post('/api/student/update', async (req, res) => {
+  try {
+    const { email, updates } = req.body;
+
+    if (!email) {
+      return res.status(400).json({ error: 'Email is required' });
+    }
+
+    if (!updates || typeof updates !== 'object') {
+      return res.status(400).json({ error: 'Updates object is required' });
+    }
+
+    const normalizedEmail = email.toLowerCase().trim();
+
+    // Find the student record
+    const records = await base('Students')
+      .select({
+        filterByFormula: `{Student's Email} = '${normalizedEmail}'`,
+        maxRecords: 1
+      })
+      .firstPage();
+
+    if (records.length === 0) {
+      return res.status(404).json({ error: 'Student not found' });
+    }
+
+    const studentRecord = records[0];
+
+    // Filter out null/undefined values and empty strings for optional fields
+    const fieldsToUpdate = {};
+    const allowedFields = [
+      'Current University / Institution',
+      'Degree / Major',
+      'Graduation Year',
+      'GPA',
+      'Current Clubs / Extracurriculars',
+      'CV/Resume',
+      'Short-Term Goals (1-3 Years)'
+    ];
+
+    for (const field of allowedFields) {
+      if (field in updates) {
+        const value = updates[field];
+        // Only include non-null values (allow 0 for numbers, empty string clears text fields)
+        if (value !== null && value !== undefined) {
+          fieldsToUpdate[field] = value;
+        }
+      }
+    }
+
+    // Update the record in Airtable
+    const updatedRecord = await base('Students').update(studentRecord.id, fieldsToUpdate);
+
+    // Return the updated student data
+    const updatedStudent = await hydrateStudent(updatedRecord);
+
+    res.json({
+      success: true,
+      student: updatedStudent
+    });
+
+  } catch (err) {
+    console.error('Student update error:', err.message);
+    res.status(500).json({ error: 'Failed to update student profile', details: err.message });
   }
 });
 
